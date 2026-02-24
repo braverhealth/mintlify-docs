@@ -1,0 +1,144 @@
+---
+title: Selectable Choice Card
+description: A form choice card with selection state and border
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+Used for large form choices that need to show selection state with distinctive styling. The card has a border that changes based on selection.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Selection State">
+    Visual distinction between selected and unselected
+  </Card>
+  <Card title="Customizable Colors">
+    Different colors for selected/unselected states
+  </Card>
+  <Card title="Border Styling">
+    Border color changes based on selection
+  </Card>
+  <Card title="Disabled State">
+    Optional disabled appearance with reduced opacity
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Choice Card
+
+```dart
+SelectableChoiceCard(
+  semanticLabel: S.of(context).selectOptionButton,
+  selected: isSelected,
+  onTap: () => toggleSelection(),
+  child: OptionContent(),
+)
+```
+
+### With Selection State
+
+```dart
+SelectableChoiceCard(
+  semanticLabel: S.of(context).selectPlanButton,
+  selected: selectedPlan == PlanType.premium,
+  onTap: () => selectPlan(PlanType.premium),
+  child: Column(
+    children: [
+      Text('Premium Plan'),
+      Text('\$19.99/month'),
+    ],
+  ),
+)
+```
+
+### Disabled State
+
+```dart
+SelectableChoiceCard(
+  semanticLabel: S.of(context).unavailableOptionLabel,
+  selected: false,
+  disabled: true,
+  onTap: null,
+  child: UnavailableContent(),
+)
+```
+
+### Custom Border Colors
+
+```dart
+SelectableChoiceCard(
+  semanticLabel: S.of(context).selectOptionButton,
+  selected: isSelected,
+  selectedBorderColor: colors.accentGreen,
+  unselectedBorderColor: colors.borderPale,
+  onTap: () => toggleSelection(),
+  child: OptionContent(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/selectablechoicecard/with-custom-colors&preview`}
+  width="100%"
+  height="300"
+/>
+
+## Parameters
+
+<ResponseField name="child" type="Widget" required>
+  Widget to display inside card.
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when card is tapped.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String" required>
+  Accessibility label for screen readers.
+</ResponseField>
+
+<ResponseField name="selected" type="bool">
+  Whether card is currently selected. Default: `false`.
+</ResponseField>
+
+<ResponseField name="disabled" type="bool">
+  Whether card is disabled. Default: `false`.
+</ResponseField>
+
+<ResponseField name="borderRadius" type="double?">
+  Border radius. Default: large from design system.
+</ResponseField>
+
+<ResponseField name="padding" type="EdgeInsets?">
+  Padding around child. Default: medium spacing.
+</ResponseField>
+
+<ResponseField name="selectedColors" type="TouchableInputParameters?">
+  Colors when selected. Default: tint primary.
+</ResponseField>
+
+<ResponseField name="unselectedColors" type="TouchableInputParameters?">
+  Colors when unselected. Default: tile colors.
+</ResponseField>
+
+<ResponseField name="selectedBorderColor" type="Color?">
+  Border color when selected.
+</ResponseField>
+
+<ResponseField name="unselectedBorderColor" type="Color?">
+  Border color when unselected.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/selectablechoicecard/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[SelectableTileButton](/components/buttons/selectable-tile-button)** - Generic tile button
+- **[CheckBox](/components/forms/checkbox)** - Boolean selection
+

@@ -1,0 +1,162 @@
+---
+title: Empty List
+description: A widget for displaying empty state with optional actions
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A widget that displays an empty state with optional icon, text, and call-to-action buttons. Used to provide visual feedback when a list, search result, or data collection is empty.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Customizable Messaging">
+    Title and subtitle text
+  </Card>
+  <Card title="Visual Icon">
+    Optional icon to reinforce empty state
+  </Card>
+  <Card title="Call-to-Action">
+    Single or multiple action buttons
+  </Card>
+  <Card title="Flexible Styling">
+    Customizable colors, padding, and background
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Empty State
+
+```dart
+EmptyList(
+  title: 'No messages yet',
+  subtitle: 'Start a conversation with your care team',
+)
+```
+
+### With Icon
+
+```dart
+EmptyList(
+  title: 'No results found',
+  subtitle: 'Try adjusting your search criteria',
+  iconName: SvgIconName.search,
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/emptylist/with-icon&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Call-to-Action
+
+```dart
+EmptyList(
+  title: 'No messages yet',
+  subtitle: 'Start a conversation with your care team',
+  iconName: SvgIconName.mail,
+  cta: CallToAction(
+    text: 'Send Message',
+    action: (_) => navigateToCompose(),
+  ),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/emptylist/with-call-to-action&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Multiple Actions
+
+```dart
+EmptyList(
+  title: 'No contacts',
+  subtitle: 'Add team members to collaborate',
+  iconName: SvgIconName.users,
+  ctas: [
+    CallToAction(text: 'Invite Team', action: (_) => invite()),
+    CallToAction(text: 'Import Contacts', action: (_) => import()),
+  ],
+)
+```
+
+### Custom Styling
+
+```dart
+EmptyList(
+  title: 'Empty inbox',
+  subtitle: 'No new notifications',
+  iconName: SvgIconName.inbox,
+  iconColor: SvgIconColor.pale,
+  backgroundColor: colors.backgroundSecondary,
+  verticalPadding: 48.0,
+)
+```
+
+## Use Cases
+
+- No search results found
+- Empty inbox or message list
+- No contacts or team members
+- Empty data tables or collections
+- Onboarding prompts
+
+## Parameters
+
+<ResponseField name="title" type="String?">
+  Title text for empty state.
+</ResponseField>
+
+<ResponseField name="subtitle" type="String?">
+  Subtitle/description text.
+</ResponseField>
+
+<ResponseField name="iconName" type="SvgIconName?">
+  Optional icon.
+</ResponseField>
+
+<ResponseField name="iconColor" type="SvgIconColor">
+  Icon color. Default: `SvgIconColor.duoTone`.
+</ResponseField>
+
+<ResponseField name="iconSize" type="SvgIconSize">
+  Icon size. Default: `SvgIconSize.mega`.
+</ResponseField>
+
+<ResponseField name="cta" type="CallToAction?">
+  Single call-to-action button.
+</ResponseField>
+
+<ResponseField name="ctas" type="List<CallToAction>?">
+  Multiple call-to-action buttons.
+</ResponseField>
+
+<ResponseField name="backgroundColor" type="Color?">
+  Optional background color.
+</ResponseField>
+
+<ResponseField name="verticalPadding" type="double">
+  Vertical padding. Default: `xlargeSpace`.
+</ResponseField>
+
+<ResponseField name="horizontalPadding" type="double?">
+  Optional horizontal padding.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/emptylist/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ListItem](/components/lists/list-item)** - List item display
+- **[PrimaryButton](/components/buttons/primary-button)** - Action buttons
+

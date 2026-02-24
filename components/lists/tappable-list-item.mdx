@@ -1,0 +1,157 @@
+---
+title: Tappable List Item
+description: An interactive list item with tap and hover state management
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+Wraps ListItem (or custom widgets) with interaction handling via the Interactive widget, automatically managing tap and hover states.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Interaction States">
+    Automatic tap and hover state management
+  </Card>
+  <Card title="Builder Pattern">
+    Access `isTapped` state for visual feedback
+  </Card>
+  <Card title="Clear Button">
+    Built-in clear/deselect support
+  </Card>
+  <Card title="Accessibility">
+    Full semantic label support
+  </Card>
+</CardGroup>
+
+## Variants
+
+- **TappableListItem** - Simple wrapper for pre-built ListItem
+- **TappableListItem.builder** - Builder pattern for custom interaction visuals
+
+## Examples
+
+### Basic Tappable Item
+
+```dart
+TappableListItem(
+  child: ListItem(
+    title: 'Two-Factor Authentication',
+    subtitle: 'Add extra security to your account',
+  ),
+  onTap: () => navigateToSettings(),
+)
+```
+
+### Builder Pattern (Recommended)
+
+The builder pattern provides access to `isTapped` state for custom visual feedback:
+
+```dart
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    title: 'Notifications',
+    subtitle: 'Manage your notification preferences',
+    trailing: isTapped
+      ? LoadingIndicator()
+      : SvgIcon(SvgIconName.chevronRight, SvgIconSize.small),
+  ),
+  onTap: () => openNotificationSettings(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/tappablelistitem/settings-item&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Selection and Clear Button
+
+```dart
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    title: selectedUser.name,
+    leading: Avatar(user: selectedUser),
+    trailing: ClearButton(
+      onClear: () => clearSelection(),
+    ),
+  ),
+  onTap: () => showUserPicker(),
+)
+```
+
+### Settings Item Pattern
+
+```dart
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    leading: SvgIcon(SvgIconName.lock, SvgIconSize.medium),
+    title: 'Privacy Settings',
+    trailing: SvgIcon(
+      SvgIconName.chevronRight, 
+      SvgIconSize.small,
+      color: isTapped ? SvgIconColor.tintedPrimary : SvgIconColor.pale,
+    ),
+  ),
+  onTap: () => navigateToPrivacy(),
+)
+```
+
+## Parameters
+
+<ResponseField name="child" type="Widget">
+  The child widget to wrap (for non-builder constructor).
+</ResponseField>
+
+<ResponseField name="builder" type="Widget Function(BuildContext, bool)">
+  Builder function providing `isTapped` state (for builder constructor).
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when the item is tapped.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+<ResponseField name="key" type="Key?">
+  Widget key for testing. Use key classes.
+</ResponseField>
+
+## Best Practices
+
+<Warning>
+Always prefer **TappableListItem.builder** over the simple constructor when you need visual feedback during tap interactions.
+</Warning>
+
+```dart
+// ❌ Less flexible - no access to tap state
+TappableListItem(
+  child: ListItem(title: 'Item'),
+  onTap: () {},
+)
+
+// ✅ More flexible - can show tap state
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    title: 'Item',
+    trailing: isTapped ? LoadingIndicator() : ChevronIcon(),
+  ),
+  onTap: () {},
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/tappablelistitem/with-avatar&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ListItem](/components/lists/list-item)** - Base list item layout
+- **[InteractivityWrapper](/components/utilities/interactivity-wrapper)** - Lower-level interaction handling
+

@@ -1,0 +1,115 @@
+---
+title: Background Colors
+description: Background color tokens for surfaces, containers, and pages
+---
+
+Background color tokens define the visual hierarchy of surfaces throughout the application. All background colors are adaptive, meaning they automatically adjust for light and dark modes.
+
+## Accessing Background Colors
+
+```dart
+final colors = context.getColors();
+
+// Primary background (main content areas)
+final primary = colors.backgroundPrimary;
+
+// Secondary background (cards, sections)
+final secondary = colors.backgroundSecondary;
+
+// Tertiary background (nested containers)
+final tertiary = colors.backgroundTertiary;
+```
+
+## Available Tokens
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `backgroundPrimary` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#FFFFFF` | <span style={{display:'inline-block',width:16,height:16,background:'#141415',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#141415` | Main content area |
+| `backgroundSecondary` | <span style={{display:'inline-block',width:16,height:16,background:'#F5F5F0',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F5F5F0` | <span style={{display:'inline-block',width:16,height:16,background:'#2B2B2C',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#2B2B2C` | Cards, sections |
+| `backgroundSecondaryTransparent` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(164,159,114,0.1)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#1AA49F72` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(219,217,207,0.12)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#1FDBD9CF` | Transparent secondary |
+| `backgroundTertiary` | <span style={{display:'inline-block',width:16,height:16,background:'#F0EFE7',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F0EFE7` | <span style={{display:'inline-block',width:16,height:16,background:'#333334',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#333334` | Nested containers |
+| `backgroundTertiaryTransparent` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(164,159,114,0.2)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#33A49F72` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(219,217,207,0.2)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#33DBD9CF` | Transparent tertiary |
+| `backgroundQuaternary` | <span style={{display:'inline-block',width:16,height:16,background:'#DBDBDB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DBDBDB` | <span style={{display:'inline-block',width:16,height:16,background:'#0E0E0E',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#0E0E0E` | Fourth level |
+| `backgroundInvalid` | <span style={{display:'inline-block',width:16,height:16,background:'#FEF2EE',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#FEF2EE` | <span style={{display:'inline-block',width:16,height:16,background:'#553227',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#553227` | Error states |
+| `backgroundHighlight` | <span style={{display:'inline-block',width:16,height:16,background:'#DDD7EB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DDD7EB` | <span style={{display:'inline-block',width:16,height:16,background:'#2E3660',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#2E3660` | Highlighted content |
+| `backgroundEmpty` | <span style={{display:'inline-block',width:16,height:16,background:'#F5F5F0',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F5F5F0` | <span style={{display:'inline-block',width:16,height:16,background:'#2B2B2C',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#2B2B2C` | Empty states |
+| `backgroundEmptyPage` | <span style={{display:'inline-block',width:16,height:16,background:'#EEEEF5',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#EEEEF5` | <span style={{display:'inline-block',width:16,height:16,background:'#191A1F',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#191A1F` | Empty page backgrounds |
+
+## Usage Examples
+
+### Card Container
+
+```dart
+Container(
+  color: colors.backgroundSecondary,
+  child: CardContent(),
+)
+```
+
+### Nested Section
+
+```dart
+Container(
+  color: colors.backgroundTertiary,
+  child: NestedContent(),
+)
+```
+
+### Error State Background
+
+```dart
+Container(
+  color: colors.backgroundInvalid,
+  child: ErrorContent(),
+)
+```
+
+### Transparent Background
+
+```dart
+Container(
+  color: colors.backgroundSecondaryTransparent,
+  child: OverlayContent(),
+)
+```
+
+## Forcing Brightness
+
+Override the automatic brightness detection:
+
+```dart
+// Force light mode colors
+final lightColors = context.getColors(light: true);
+
+// Force dark mode colors
+final darkColors = context.getColors(dark: true);
+```
+
+## Visual Hierarchy
+
+The background color hierarchy creates depth:
+
+1. **Primary** - Main content surface
+2. **Secondary** - Elevated cards and sections
+3. **Tertiary** - Nested elements within cards
+4. **Quaternary** - Deeply nested elements
+
+```dart
+Container(
+  color: colors.backgroundPrimary,  // Outermost
+  child: Container(
+    color: colors.backgroundSecondary,  // Card level
+    child: Container(
+      color: colors.backgroundTertiary,  // Nested section
+      child: Content(),
+    ),
+  ),
+)
+```
+
+## Related Tokens
+
+- **[Text Colors](/tokens/colors/text)** - Text color tokens
+- **[Border Colors](/tokens/colors/border)** - Border color tokens
+- **[Tint Colors](/tokens/colors/tint)** - Accent tint colors
+

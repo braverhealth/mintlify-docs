@@ -1,0 +1,133 @@
+---
+title: List Item
+description: A foundational component for displaying list items with flexible layout
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A foundational, non-interactive component that handles layout, text rendering, and visual styling for list items.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Flexible Layout">
+    Leading, content, and trailing areas for custom widgets
+  </Card>
+  <Card title="Multiple Text Lines">
+    Title, subtitle, and caption with automatic styling
+  </Card>
+  <Card title="Accessibility">
+    Full semantic label support for screen readers
+  </Card>
+  <Card title="Custom Builders">
+    Builder pattern for dynamic content
+  </Card>
+</CardGroup>
+
+## Layout Structure
+
+```
+┌─────────────────────────────────────────────────────┐
+│ [Leading]  [Title + Subtitle + Caption]  [Trailing] │
+└─────────────────────────────────────────────────────┘
+```
+
+## Examples
+
+### Basic List Item
+
+```dart
+ListItem(
+  title: 'Dr. Amélie Gravel',
+  subtitle: 'General Practitioner',
+)
+```
+
+### With Avatar Leading
+
+```dart
+ListItem(
+  leading: Avatar(user: currentUser),
+  title: 'Dr. Amélie Gravel',
+  subtitle: 'General Practitioner',
+  trailing: SvgIcon(SvgIconName.chevronRight, SvgIconSize.small),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/listitem/contact-item&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Folder Avatar (Patient)
+
+```dart
+ListItem(
+  leading: FolderAvatar(
+    text: 'Jean Tremblay',
+    colorIndex: patient.colorIndex,
+  ),
+  title: 'Jean Tremblay',
+  subtitle: 'Care Plan A',
+  caption: 'Last seen: 2 days ago',
+)
+```
+
+### Subtitle with Leading Content
+
+```dart
+ListItem(
+  title: 'Team Discussion',
+  subtitle: 'Latest updates on patient care',
+  subtitleLeading: NotificationPin(),
+)
+```
+
+## Parameters
+
+<ResponseField name="title" type="String?" required>
+  The main text label for the list item.
+</ResponseField>
+
+<ResponseField name="subtitle" type="String?">
+  Secondary text displayed below the title.
+</ResponseField>
+
+<ResponseField name="caption" type="String?">
+  Tertiary text displayed below subtitle (typically used for metadata).
+</ResponseField>
+
+<ResponseField name="leading" type="Widget?">
+  Widget displayed at the start (typically Avatar or Icon).
+</ResponseField>
+
+<ResponseField name="trailing" type="Widget?">
+  Widget displayed at the end (typically icon or action button).
+</ResponseField>
+
+<ResponseField name="subtitleLeading" type="Widget?">
+  Widget displayed before the subtitle (e.g., notification indicator).
+</ResponseField>
+
+<ResponseField name="titleTextColor" type="TextColor">
+  Color scheme for title text.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/lists/listitem/settings-item&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[TappableListItem](/components/lists/tappable-list-item)** - Adds interaction handling
+- **[Avatar](/components/avatars/avatar)** - User avatar for leading slot
+- **[FolderAvatar](/components/avatars/folder-avatar)** - Patient folder icon
+

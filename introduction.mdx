@@ -1,0 +1,86 @@
+---
+title: Introduction
+description: Braver Flutter UI - A comprehensive design system for building healthcare applications
+---
+
+# Braver Flutter UI
+
+Braver Flutter UI is a comprehensive design system and component library for building consistent, accessible healthcare applications. It provides a cohesive set of widgets and design tokens that work together to create beautiful, functional user interfaces.
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Design Tokens" icon="palette">
+    Centralized design values for colors, typography, spacing, and more that can be updated dynamically.
+  </Card>
+  <Card title="Component Library" icon="puzzle-piece">
+    Production-ready widgets built on Flutter best practices with full accessibility support.
+  </Card>
+  <Card title="Dark Mode" icon="moon">
+    Automatic light/dark mode support with adaptive colors that respond to system preferences.
+  </Card>
+  <Card title="Theming" icon="brush">
+    Flexible theming system that allows runtime customization via the DesignTokensCubit.
+  </Card>
+</CardGroup>
+
+## Architecture
+
+The library is organized into two main areas:
+
+### Components
+
+Reusable Flutter widgets organized by category:
+
+- **Buttons** - Primary, secondary, link, menu, navigation buttons
+- **Forms** - Text inputs, date/time pickers, dropdowns, checkboxes
+- **Lists** - List items, tappable items, empty states
+- **Avatars** - User avatars, folder avatars, text-based avatars
+- **Modals** - Dialogs, confirmation prompts, consent flows
+- **Indicators** - Loading states, badges, notification pins
+- **Layout** - Tabs, menus, containers
+
+### Design Tokens
+
+Centralized design values that ensure consistency:
+
+- **Colors** - Background, text, tint, border, and accent colors
+- **Typography** - Font families, sizes, weights, and text styles
+- **Spacing** - Consistent spacing scale for margins and padding
+- **Borders** - Border widths, radii, and styles
+- **Shadows** - Elevation and shadow definitions
+- **Animation** - Durations and easing curves
+
+## Quick Start
+
+```dart
+import 'package:braver_flutter_ui/braver_flutter_ui.dart';
+
+// Access colors from context
+final colors = context.getColors();
+final primaryBg = colors.backgroundPrimary;
+
+// Use a button component
+PrimaryButton(
+  text: 'Get Started',
+  onPressed: () => navigateToOnboarding(),
+)
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/installation">
+    Learn how to add braver_flutter_ui to your project
+  </Card>
+  <Card title="Usage" icon="code" href="/usage">
+    Understand how to use components and tokens
+  </Card>
+  <Card title="Components" icon="puzzle-piece" href="/components/buttons/primary-button">
+    Browse the component library
+  </Card>
+  <Card title="Design Tokens" icon="palette" href="/tokens/colors/overview">
+    Explore the design token system
+  </Card>
+</CardGroup>
+

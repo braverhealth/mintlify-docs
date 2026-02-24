@@ -1,0 +1,150 @@
+---
+title: Loading Indicator
+description: An animated loading spinner for async operations
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+An animated loading spinner used to indicate async operations, loading states, or processing. Adapts to platform conventions.
+
+## Examples
+
+### Basic Loading Indicator
+
+```dart
+LoadingIndicator()
+```
+
+### Custom Size
+
+```dart
+LoadingIndicator(size: 48.0)
+```
+
+### In Button
+
+```dart
+PrimaryButton(
+  text: 'Submitting...',
+  isLoading: true,
+  onPressed: null,
+)
+```
+
+### Full Screen Loading
+
+```dart
+Center(
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      LoadingIndicator(size: 48.0),
+      SizedBox(height: 16),
+      Text('Loading...'),
+    ],
+  ),
+)
+```
+
+### In List
+
+```dart
+if (isLoading)
+  Center(
+    child: Padding(
+      padding: EdgeInsets.all(16),
+      child: LoadingIndicator(),
+    ),
+  )
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Platform Adaptive">
+    Follows platform conventions
+  </Card>
+  <Card title="Customizable Size">
+    Adjustable size for different contexts
+  </Card>
+  <Card title="Color Support">
+    Adapts to theme colors
+  </Card>
+  <Card title="Smooth Animation">
+    Continuous spinning animation
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ResponseField name="size" type="double">
+  Size of the loading indicator. Default: platform-specific.
+</ResponseField>
+
+<ResponseField name="color" type="Color?">
+  Optional custom color override.
+</ResponseField>
+
+<ResponseField name="strokeWidth" type="double">
+  Stroke width of the indicator. Default: platform-specific.
+</ResponseField>
+
+## Usage Patterns
+
+### Async Operation
+
+```dart
+Widget build(BuildContext context) {
+  if (state.isLoading) {
+    return Center(child: LoadingIndicator());
+  }
+  return Content();
+}
+```
+
+### Pull to Refresh
+
+```dart
+RefreshIndicator(
+  onRefresh: () => refreshData(),
+  child: listView,
+)
+```
+
+### Button Loading State
+
+```dart
+PrimaryButton(
+  text: isSubmitting ? 'Saving...' : 'Save',
+  isLoading: isSubmitting,
+  onPressed: isSubmitting ? null : () => save(),
+)
+```
+
+### Overlay
+
+```dart
+Stack(
+  children: [
+    Content(),
+    if (isLoading)
+      Container(
+        color: Colors.black45,
+        child: Center(child: LoadingIndicator(size: 48)),
+      ),
+  ],
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/progress/bravercircularprogressindicator/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[PrimaryButton](/components/buttons/primary-button)** - Button with loading state
+- **[ModalSurface](/components/modals/modal-surface)** - blockUI for full blocking
+

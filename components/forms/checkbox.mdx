@@ -1,0 +1,162 @@
+---
+title: Checkbox
+description: A customizable checkbox for boolean selection
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A customizable checkbox widget for boolean state selection. Provides visual checkbox control with animated checkmark.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Animated Checkmark">
+    Smooth check/uncheck animation
+  </Card>
+  <Card title="Disabled State">
+    Visual feedback when disabled
+  </Card>
+  <Card title="Accessibility">
+    Semantic label support
+  </Card>
+  <Card title="Theme-aware">
+    Adapts to theme colors
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Checkbox
+
+```dart
+CheckBox(
+  isChecked: isAgreed,
+  onTap: () => setState(() => isAgreed = !isAgreed),
+  semanticLabel: S.of(context).agreeToTermsCheckbox,
+)
+```
+
+### Checked State
+
+```dart
+CheckBox(
+  isChecked: true,
+  onTap: () => toggle(),
+  semanticLabel: S.of(context).optionSelectedCheckbox,
+)
+```
+
+### Disabled Checkbox
+
+```dart
+CheckBox(
+  isChecked: true,
+  isDisabled: true,
+  semanticLabel: S.of(context).unavailableOptionLabel,
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/utilities/checkbox/states&preview`}
+  width="100%"
+  height="300"
+/>
+
+### In a List Item
+
+```dart
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    leading: CheckBox(
+      isChecked: item.isSelected,
+      onTap: null,  // Handled by list item
+      semanticLabel: S.of(context).selectItemCheckbox,
+    ),
+    title: item.name,
+  ),
+  onTap: () => toggleItem(item),
+)
+```
+
+### Terms and Conditions
+
+```dart
+Row(
+  children: [
+    CheckBox(
+      isChecked: agreedToTerms,
+      onTap: () => setState(() => agreedToTerms = !agreedToTerms),
+      semanticLabel: S.of(context).agreeToTermsCheckbox,
+    ),
+    SizedBox(width: 8),
+    Expanded(
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(text: 'I agree to the '),
+            SpanButton(
+              text: 'Terms of Service',
+              onTap: () => openTerms(),
+            ).build(),
+          ],
+        ),
+      ),
+    ),
+  ],
+)
+```
+
+## Use Cases
+
+- Form input for boolean selections
+- Terms and conditions acceptance
+- Feature toggles and preferences
+- Multi-select lists
+- Task completion
+
+## Parameters
+
+<ResponseField name="isChecked" type="bool">
+  Whether checkbox is checked. Default: `false`.
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when checkbox is tapped. Set to `null` for read-only.
+</ResponseField>
+
+<ResponseField name="isDisabled" type="bool">
+  Whether checkbox is disabled. Default: `false`.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Controlled vs Uncontrolled
+
+CheckBox is a controlled component - you must manage the state:
+
+```dart
+// Parent manages state
+bool isChecked = false;
+
+CheckBox(
+  isChecked: isChecked,
+  onTap: () => setState(() => isChecked = !isChecked),
+  semanticLabel: S.of(context).toggleOptionCheckbox,
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/utilities/checkbox/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[SelectableChoiceCard](/components/buttons/selectable-choice-card)** - Card selection
+- **[ToggleButton](/components/buttons/toggle-button)** - Toggle button
+- **[TappableListItem](/components/lists/tappable-list-item)** - List selection
+

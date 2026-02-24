@@ -1,0 +1,165 @@
+---
+title: Spacing Overview
+description: Spacing tokens for consistent margins, padding, and gaps
+---
+
+Spacing tokens provide a consistent spacing scale for margins, padding, and gaps throughout the application. Access via `context.spacingTokens`.
+
+## Accessing Spacing
+
+```dart
+final spacing = context.spacingTokens;
+
+// Use spacing values
+final padding = EdgeInsets.all(spacing.medium);
+```
+
+## Spacing Scale
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| `none` | 0px | No space |
+| `xxxsmall` | 2px | Minimal space |
+| `xxsmall` | 4px | Very small |
+| `xsmall` | 8px | Extra small |
+| `small` | 12px | Small |
+| `medium` | 16px | Standard |
+| `large` | 24px | Large |
+| `xlarge` | 32px | Extra large |
+| `xxlarge` | 48px | Very large |
+| `xxxlarge` | 64px | Maximal |
+
+## Usage Examples
+
+### Padding
+
+```dart
+Padding(
+  padding: EdgeInsets.all(spacing.medium),
+  child: Content(),
+)
+```
+
+### Margins
+
+```dart
+Container(
+  margin: EdgeInsets.symmetric(
+    horizontal: spacing.large,
+    vertical: spacing.medium,
+  ),
+  child: Content(),
+)
+```
+
+### Gaps Between Elements
+
+```dart
+Column(
+  children: [
+    FirstElement(),
+    SizedBox(height: spacing.small),
+    SecondElement(),
+    SizedBox(height: spacing.medium),
+    ThirdElement(),
+  ],
+)
+```
+
+### AdaptiveSpacer
+
+The `AdaptiveSpacer` widget uses spacing tokens:
+
+```dart
+Column(
+  children: [
+    Title(),
+    const AdaptiveSpacer(mediumSpace),
+    Description(),
+  ],
+)
+```
+
+## Predefined Constants
+
+For convenience, spacing constants are available:
+
+```dart
+// Constants (in logical pixels)
+const double noSpace = 0.0;
+const double xxxsmallSpace = 2.0;
+const double xxsmallSpace = 4.0;
+const double xsmallSpace = 8.0;
+const double smallSpace = 12.0;
+const double mediumSpace = 16.0;
+const double largeSpace = 24.0;
+const double xlargeSpace = 32.0;
+const double xxlargeSpace = 48.0;
+const double xxxlargeSpace = 64.0;
+```
+
+## Border Width
+
+```dart
+final borderWidth = spacing.borderWidth;
+
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(width: borderWidth),
+  ),
+)
+```
+
+## Platform Variants
+
+Spacing adapts to platform:
+
+```dart
+// Get platform-specific spacing
+final spacing = SpacingTokens.forPlatform(
+  DevicePlatform.mobileIOS,
+  isDark: false,
+);
+```
+
+## Layout Patterns
+
+### Card Spacing
+
+```dart
+Container(
+  padding: EdgeInsets.all(spacing.medium),
+  margin: EdgeInsets.all(spacing.small),
+  child: CardContent(),
+)
+```
+
+### List Item Spacing
+
+```dart
+ListTile(
+  contentPadding: EdgeInsets.symmetric(
+    horizontal: spacing.medium,
+    vertical: spacing.small,
+  ),
+  title: Text('Item'),
+)
+```
+
+### Page Padding
+
+```dart
+Padding(
+  padding: EdgeInsets.symmetric(
+    horizontal: spacing.large,
+    vertical: spacing.xlarge,
+  ),
+  child: PageContent(),
+)
+```
+
+## Related Tokens
+
+- **[Borders](/tokens/borders/overview)** - Border radius tokens
+- **[Typography](/tokens/typography/overview)** - Text spacing
+

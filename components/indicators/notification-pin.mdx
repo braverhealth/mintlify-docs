@@ -1,0 +1,112 @@
+---
+title: Notification Pin
+description: A small colored indicator for notifications and status
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A small colored indicator dot used to show notification status, unread counts, or activity indicators. Commonly used alongside icons, avatars, or list items.
+
+## Examples
+
+### Basic Notification Pin
+
+```dart
+NotificationPin()
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/components/notificationpin/default&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Count Badge
+
+```dart
+CountBadge(count: 5)
+```
+
+### As Activity Indicator
+
+```dart
+ActivityIndicatorIcon(hasActivity: hasUnread)
+```
+
+### In List Item
+
+```dart
+ListItem(
+  title: 'Team Discussion',
+  subtitle: 'Latest updates',
+  subtitleLeading: NotificationPin(),
+)
+```
+
+## Related Components
+
+<CardGroup cols={2}>
+  <Card title="CountBadge" href="/components/indicators/count-badge">
+    Display numeric counts
+  </Card>
+  <Card title="BadgeWithNotificationIcon" href="/components/indicators/badge-with-notification-icon">
+    Icon with badge overlay
+  </Card>
+</CardGroup>
+
+## Variants
+
+| Component | Description |
+|-----------|-------------|
+| `NotificationPin` | Simple dot indicator |
+| `CountBadge` | Numeric count display |
+| `CountBadge.dot()` | Alternative dot style |
+| `CountBadge.unread()` | Red/orange unread badge |
+| `ActivityIndicatorIcon` | Conditional activity dot |
+
+## Usage Patterns
+
+### Conditional Display
+
+```dart
+if (hasNotifications)
+  NotificationPin()
+```
+
+### In Tab Bar
+
+```dart
+BraverTab(
+  text: 'Inbox',
+  index: 0,
+  controller: tabController,
+  activityCount: unreadCount,
+)
+```
+
+### In Avatar Overlay
+
+```dart
+Avatar(
+  subject: userSubject,
+  overlayWidget: Positioned(
+    bottom: 0,
+    right: 0,
+    child: NotificationPin(),
+  ),
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/components/notificationpin/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[CountBadge](/components/indicators/count-badge)** - Numeric counts
+- **[BadgeWithNotificationIcon](/components/indicators/badge-with-notification-icon)** - Icon with badge
+- **[ListItem](/components/lists/list-item)** - List item with notification
+

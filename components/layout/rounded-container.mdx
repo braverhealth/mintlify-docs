@@ -1,0 +1,173 @@
+---
+title: Rounded Container
+description: A container with rounded corners for cards and sections
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A container that clips its child with rounded corners and optionally applies a background color, border, or shadow. Commonly used for modal page tops, card-like containers, and bordered sections.
+
+## Constructors
+
+| Constructor | Description |
+|-------------|-------------|
+| `RoundedContainer` | Full customization of border radius |
+| `RoundedContainer.topRounded` | Only top corners rounded (modal pages) |
+| `RoundedContainer.allRounded` | All corners rounded equally |
+| `RoundedContainer.section` | Pre-defined section styling |
+
+## Examples
+
+### Default Container
+
+```dart
+RoundedContainer(
+  borderRadius: BorderRadius.circular(12),
+  backgroundColor: colors.backgroundSecondary,
+  child: Content(),
+)
+```
+
+### Top Rounded (Modal Pages)
+
+```dart
+RoundedContainer.topRounded(
+  radius: 16.0,
+  child: ModalContent(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/utilities/roundedcontainer/top-rounded&preview`}
+  width="100%"
+  height="300"
+/>
+
+### All Rounded (Cards)
+
+```dart
+RoundedContainer.allRounded(
+  radius: 12.0,
+  backgroundColor: colors.backgroundSecondary,
+  child: CardContent(),
+)
+```
+
+### Section Style
+
+```dart
+RoundedContainer.section(
+  child: SectionContent(),
+  margin: EdgeInsets.all(16),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/utilities/roundedcontainer/section&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Border
+
+```dart
+RoundedContainer.allRounded(
+  radius: 12.0,
+  border: Border.all(color: colors.border),
+  child: Content(),
+)
+```
+
+### With Shadow
+
+```dart
+RoundedContainer.allRounded(
+  radius: 12.0,
+  boxShadow: shadows.normal,
+  backgroundColor: colors.backgroundPrimary,
+  child: Content(),
+)
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multiple Variants">
+    Different constructors for common use cases
+  </Card>
+  <Card title="Customizable">
+    Border, shadow, background, padding options
+  </Card>
+  <Card title="Clipping">
+    Clips content to border radius
+  </Card>
+  <Card title="Constraints">
+    Optional size constraints
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ResponseField name="child" type="Widget" required>
+  Widget to display inside container.
+</ResponseField>
+
+<ResponseField name="borderRadius" type="BorderRadius">
+  Border radius for clipping. Default: `smallSpace`.
+</ResponseField>
+
+<ResponseField name="backgroundColor" type="Color?">
+  Optional background color.
+</ResponseField>
+
+<ResponseField name="border" type="BoxBorder?">
+  Optional border.
+</ResponseField>
+
+<ResponseField name="boxShadow" type="List<BoxShadow>?">
+  Optional shadow.
+</ResponseField>
+
+<ResponseField name="padding" type="EdgeInsets?">
+  Optional padding inside container.
+</ResponseField>
+
+<ResponseField name="constraints" type="BoxConstraints?">
+  Optional size constraints.
+</ResponseField>
+
+<ResponseField name="clipBehavior" type="Clip">
+  Clip behavior to use. Default: `Clip.hardEdge`.
+</ResponseField>
+
+## Section Constructor
+
+Pre-defined styling for content sections:
+
+- Secondary background color
+- 24px border radius
+- Max width constraint
+- Bottom padding
+
+```dart
+RoundedContainer.section(
+  child: Column(
+    children: [
+      ListItem(title: 'Option 1'),
+      ListItem(title: 'Option 2'),
+    ],
+  ),
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/utilities/roundedcontainer/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ModalSurface](/components/modals/modal-surface)** - Modal system
+

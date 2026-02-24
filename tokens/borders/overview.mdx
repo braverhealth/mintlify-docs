@@ -1,0 +1,160 @@
+---
+title: Borders Overview
+description: Border radius and width tokens for consistent rounded corners
+---
+
+Border tokens define border radii and widths for consistent rounded corners throughout the application. Access via `context.getBorders()`.
+
+## Accessing Borders
+
+```dart
+final borders = context.getBorders();
+
+// Use border radius
+final radius = borders.mediumRadius;
+```
+
+## Border Radius Scale
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| `smallRadius` | 4px | Subtle rounding |
+| `mediumRadius` | 8px | Cards, containers |
+| `largeRadius` | 12px | Prominent elements |
+| `xlargeRadius` | 16px | Modals, sheets |
+| `circularRadius` | 9999px | Pills, circles |
+
+## Border Width
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| `defaultWidth` | 1px | Standard border width |
+
+## Usage Examples
+
+### Card Container
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(borders.mediumRadius),
+    color: colors.backgroundSecondary,
+  ),
+  child: CardContent(),
+)
+```
+
+### Button
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(borders.smallRadius),
+    color: colors.tintPrimary,
+  ),
+  child: Text('Button'),
+)
+```
+
+### Modal Sheet
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.vertical(
+      top: Radius.circular(borders.xlargeRadius),
+    ),
+    color: colors.backgroundPrimary,
+  ),
+  child: ModalContent(),
+)
+```
+
+### Pill Shape
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(borders.circularRadius),
+    color: colors.tintSecondary,
+  ),
+  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+  child: Text('Tag'),
+)
+```
+
+### With Border
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(borders.mediumRadius),
+    border: Border.all(
+      color: colors.border,
+      width: borders.defaultWidth,
+    ),
+  ),
+  child: Content(),
+)
+```
+
+## Platform Variants
+
+Borders adapt to platform:
+
+```dart
+// Get platform-specific borders
+final borders = BorderTokens.forPlatform(
+  DevicePlatform.mobileIOS,
+  isDark: false,
+);
+```
+
+## RoundedContainer
+
+The `RoundedContainer` widget uses border tokens:
+
+```dart
+RoundedContainer.allRounded(
+  radius: borders.mediumRadius,
+  backgroundColor: colors.backgroundSecondary,
+  child: Content(),
+)
+```
+
+## BorderRadius Helper
+
+Create BorderRadius objects:
+
+```dart
+// All corners
+final allRounded = BorderRadius.circular(borders.mediumRadius);
+
+// Top corners only
+final topRounded = BorderRadius.vertical(
+  top: Radius.circular(borders.largeRadius),
+);
+
+// Left corners only
+final leftRounded = BorderRadius.horizontal(
+  left: Radius.circular(borders.mediumRadius),
+);
+```
+
+## Use Case Guidelines
+
+| Element | Recommended Radius |
+|---------|-------------------|
+| Buttons | `smallRadius` |
+| Input fields | `smallRadius` |
+| Cards | `mediumRadius` |
+| Dialogs | `largeRadius` |
+| Bottom sheets | `xlargeRadius` |
+| Chips, pills | `circularRadius` |
+
+## Related Tokens
+
+- **[Border Colors](/tokens/colors/border)** - Border color tokens
+- **[Shadows](/tokens/shadows/overview)** - Shadow tokens
+- **[Spacing](/tokens/spacing/overview)** - Spacing tokens
+

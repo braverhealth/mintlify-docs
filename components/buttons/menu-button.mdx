@@ -1,0 +1,138 @@
+---
+title: Menu Button
+description: A compact button for menu items and dropdown actions
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A specialized secondary button designed for use in menus, dropdowns, and action lists. Features compact size and left-aligned content for consistent menu layouts.
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| `MenuButton` | Default menu button with customizable colors |
+| `MenuButton.transparent` | Fully transparent background |
+| `MenuButton.invalid` | Error/destructive state styling |
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Compact Sizing">
+    Optimized for menu contexts
+  </Card>
+  <Card title="Left-aligned">
+    Text and icons align to the left
+  </Card>
+  <Card title="Large Icon Support">
+    `largeIcon` parameter for prominent icons
+  </Card>
+  <Card title="Grouped Mode">
+    Removes border radius when `grouped` is true
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Menu Item
+
+```dart
+MenuButton(
+  text: 'Edit',
+  iconName: SvgIconName.edit,
+  onPressed: () => editItem(),
+)
+```
+
+### Transparent Menu Item
+
+```dart
+MenuButton.transparent(
+  text: 'Share',
+  iconName: SvgIconName.share,
+  onPressed: () => shareItem(),
+)
+```
+
+### Destructive Action (Invalid)
+
+```dart
+MenuButton.invalid(
+  text: 'Delete',
+  iconName: SvgIconName.trash,
+  onPressed: () => deleteItem(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/menubutton/invalid-(destructive)&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Icon-only Menu Button
+
+```dart
+MenuButton.icon(
+  iconName: SvgIconName.moreVertical,
+  semanticLabel: S.of(context).moreOptionsButton,
+  onPressed: () => showOptions(),
+)
+```
+
+### In a Menu
+
+```dart
+ModalMenu(
+  sections: [
+    ModalMenuSection(
+      buttonGroup: ButtonGroup(
+        buttons: [
+          MenuButton(text: 'Copy', iconName: SvgIconName.copy),
+          MenuButton(text: 'Paste', iconName: SvgIconName.paste),
+          MenuButton.invalid(text: 'Delete', iconName: SvgIconName.trash),
+        ],
+      ),
+    ),
+  ],
+).show(context);
+```
+
+## Parameters
+
+<ResponseField name="text" type="String?">
+  Button label text.
+</ResponseField>
+
+<ResponseField name="iconName" type="SvgIconName?">
+  Optional icon to display.
+</ResponseField>
+
+<ResponseField name="largeIcon" type="bool">
+  Whether to display a larger icon. Default: `false`.
+</ResponseField>
+
+<ResponseField name="grouped" type="bool">
+  Whether button is part of a group. Default: `true`.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback?">
+  Callback when button is pressed.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/menubutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ModalMenu](/components/layout/modal-menu)** - Menu container
+- **[ButtonGroup](/components/buttons/button-group)** - Button grouping
+

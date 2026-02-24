@@ -1,0 +1,149 @@
+---
+title: Border Colors
+description: Border color tokens for outlines, separators, and dividers
+---
+
+Border color tokens define colors for outlines, separators, and visual boundaries. These tokens ensure consistent borders across the application.
+
+## Accessing Border Colors
+
+```dart
+final colors = context.getColors();
+
+// Standard border
+final border = colors.border;
+
+// Pale border (subtle)
+final pale = colors.borderPale;
+
+// Heavy border (emphasized)
+final heavy = colors.borderHeavy;
+```
+
+## Available Tokens
+
+### Border Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `border` | <span style={{display:'inline-block',width:16,height:16,background:'#E5E5E1',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#E5E5E1` | <span style={{display:'inline-block',width:16,height:16,background:'#252627',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#252627` | Standard border color |
+| `borderPale` | <span style={{display:'inline-block',width:16,height:16,background:'#EFEFE',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#EFEFED` | <span style={{display:'inline-block',width:16,height:16,background:'#1B1C1D',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#1B1C1D` | Subtle, light border |
+| `borderHeavy` | <span style={{display:'inline-block',width:16,height:16,background:'#DADAD6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DADAD6` | <span style={{display:'inline-block',width:16,height:16,background:'#303132',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#303132` | Emphasized, darker border |
+
+### Separator Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `separatorNavBar` | <span style={{display:'inline-block',width:16,height:16,background:'#DBDBDB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DBDBDB` | <span style={{display:'inline-block',width:16,height:16,background:'#333333',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#333333` | Navigation bar separator |
+| `separatorWideLayout` | <span style={{display:'inline-block',width:16,height:16,background:'#DBDBDB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DBDBDB` | <span style={{display:'inline-block',width:16,height:16,background:'#1F1F1F',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#1F1F1F` | Wide layout dividers |
+
+### Shadow Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `shadowNavBar` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#FFFFFF` | <span style={{display:'inline-block',width:16,height:16,background:'#000000',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#000000` | Navigation bar shadow |
+
+## Usage Examples
+
+### Standard Border
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(color: colors.border),
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: Content(),
+)
+```
+
+### Subtle Border
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(color: colors.borderPale),
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: CardContent(),
+)
+```
+
+### Emphasized Border
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(color: colors.borderHeavy, width: 2),
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: FocusedContent(),
+)
+```
+
+### Divider Line
+
+```dart
+Container(
+  height: 1,
+  color: colors.border,
+)
+```
+
+### List Separator
+
+```dart
+ListView.separated(
+  itemBuilder: (context, index) => ListItem(...),
+  separatorBuilder: (context, index) => Divider(
+    color: colors.borderPale,
+    height: 1,
+  ),
+  itemCount: items.length,
+)
+```
+
+## Navigation Bar Separator
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    border: Border(
+      bottom: BorderSide(color: colors.separatorNavBar),
+    ),
+  ),
+  child: NavBar(),
+)
+```
+
+## Selection Border
+
+Use heavier borders for selected states:
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    border: Border.all(
+      color: isSelected ? colors.tintPrimary : colors.borderPale,
+      width: isSelected ? 2 : 1,
+    ),
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: SelectableItem(),
+)
+```
+
+## Border Hierarchy
+
+| Level | Token | Use Case |
+|-------|-------|----------|
+| Subtle | `borderPale` | Cards, sections |
+| Standard | `border` | Form inputs, containers |
+| Emphasized | `borderHeavy` | Focus states, emphasis |
+
+## Related Tokens
+
+- **[Background Colors](/tokens/colors/background)** - Surface colors
+- **[Borders](/tokens/borders/overview)** - Border radius tokens
+- **[Shadows](/tokens/shadows/overview)** - Shadow tokens
+

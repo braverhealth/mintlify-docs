@@ -1,0 +1,129 @@
+---
+title: Count Badge
+description: A badge widget for displaying counts and notifications
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A badge widget for displaying counts, notifications, or status indicators. Available in multiple variants for different use cases.
+
+## Constructors
+
+| Constructor | Description |
+|-------------|-------------|
+| `CountBadge()` | Purple count badge for general counts |
+| `CountBadge.unread()` | Red/orange badge for unread notifications |
+| `CountBadge.dot()` | Simple notification dot indicator |
+| `CountBadge.withIcon()` | Icon with a badge overlay |
+
+## Examples
+
+### Basic Count Badge
+
+```dart
+CountBadge(count: 5)
+```
+
+### Unread Count Badge
+
+```dart
+CountBadge.unread(count: 12)
+```
+
+### Dot Badge
+
+```dart
+CountBadge.dot()
+```
+
+### Icon with Badge
+
+```dart
+CountBadge.withIcon(
+  icon: SvgIcon(SvgIconName.bell, SvgIconSize.medium),
+  iconSize: Size(24, 24),
+  badge: CountBadge.unread(count: 3),
+)
+```
+
+### With Border
+
+```dart
+CountBadge.unread(
+  count: 5,
+  side: BorderSide(color: Colors.white, width: 2),
+)
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multiple Variants">
+    Different styles for various use cases
+  </Card>
+  <Card title="Auto Sizing">
+    Automatically sizes based on count digits
+  </Card>
+  <Card title="Badge Overlay">
+    Can overlay on icons
+  </Card>
+  <Card title="Border Support">
+    Optional border for contrast
+  </Card>
+</CardGroup>
+
+## Parameters
+
+### CountBadge (default)
+
+<ResponseField name="count" type="int" required>
+  The count to display.
+</ResponseField>
+
+### CountBadge.unread
+
+<ResponseField name="count" type="int" required>
+  The unread count to display.
+</ResponseField>
+
+<ResponseField name="side" type="BorderSide?">
+  Optional border side.
+</ResponseField>
+
+### CountBadge.dot
+
+<ResponseField name="paddingRatio" type="double">
+  Padding ratio for dot badge. Default: `0.25`.
+</ResponseField>
+
+### CountBadge.withIcon
+
+<ResponseField name="icon" type="Widget" required>
+  The icon widget.
+</ResponseField>
+
+<ResponseField name="iconSize" type="Size" required>
+  The size of the icon.
+</ResponseField>
+
+<ResponseField name="badge" type="Widget" required>
+  The badge widget to overlay.
+</ResponseField>
+
+## Constants
+
+- `minWidth`: 18.0 - Minimum width of count badges
+- `maxHeight`: 18.0 - Maximum height of count badges
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/pin/countbadge/default-count&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[NotificationPin](/components/indicators/notification-pin)** - Simple dot
+- **[BadgeWithNotificationIcon](/components/indicators/badge-with-notification-icon)** - Icon with badge
+

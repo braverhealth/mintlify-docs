@@ -1,0 +1,113 @@
+---
+title: Outline Button
+description: A circular icon button with a border outline
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+Similar to NavButton but features a border outline instead of a solid background. Used for secondary icon-based actions that need visual distinction from primary navigation buttons.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Icon-only">
+    Displays only an icon (no text)
+  </Card>
+  <Card title="Circular Shape">
+    Always renders as a perfect circle
+  </Card>
+  <Card title="Border Outline">
+    Animated border that changes on interaction
+  </Card>
+  <Card title="Customizable Stroke">
+    Control icon stroke via `iconStrokeWidth`
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Outline Button
+
+```dart
+OutlineButton(
+  iconName: SvgIconName.settings,
+  semanticLabel: S.of(context).settingsButton,
+  onPressed: () => openSettings(),
+)
+```
+
+### Large Outline Button
+
+```dart
+OutlineButton(
+  size: ButtonSize.large,
+  iconName: SvgIconName.info,
+  semanticLabel: S.of(context).infoButton,
+  onPressed: () => showInfo(),
+)
+```
+
+### With Bold Stroke
+
+```dart
+OutlineButton(
+  iconName: SvgIconName.help,
+  iconStrokeWidth: SvgIconStrokeWidth.bold,
+  semanticLabel: S.of(context).helpButton,
+  onPressed: () => showHelp(),
+)
+```
+
+### Disabled State
+
+```dart
+OutlineButton(
+  iconName: SvgIconName.share,
+  semanticLabel: S.of(context).shareButton,
+  onPressed: null,  // Automatically disabled
+)
+```
+
+## Parameters
+
+<ResponseField name="iconName" type="SvgIconName" required>
+  The icon to display.
+</ResponseField>
+
+<ResponseField name="size" type="ButtonSize">
+  Button size. Supports all ButtonSize values.
+</ResponseField>
+
+<ResponseField name="iconStrokeWidth" type="SvgIconStrokeWidth">
+  Icon stroke width. Default: `normal`.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback?">
+  Callback when button is pressed. Set to `null` to disable.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?" required>
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Comparison with NavButton
+
+| Feature | NavButton | OutlineButton |
+|---------|-----------|---------------|
+| Background | Solid fill | Transparent |
+| Border | None | Visible outline |
+| Use case | Primary navigation | Secondary actions |
+| Visual weight | Higher | Lower |
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/outlinebutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[NavButton](/components/buttons/nav-button)** - Solid background variant
+- **[HudButton](/components/buttons/hud-button)** - Transparent HUD button
+

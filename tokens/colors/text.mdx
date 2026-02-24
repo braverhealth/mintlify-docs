@@ -1,0 +1,131 @@
+---
+title: Text Colors
+description: Text color tokens for typography and labels
+---
+
+Text color tokens provide consistent typography colors with automatic light/dark mode adaptation. These tokens ensure readable text across all surfaces.
+
+## Accessing Text Colors
+
+```dart
+final colors = context.getColors();
+
+// Primary text (full contrast)
+final primary = colors.text;
+
+// Pale text (reduced emphasis)
+final pale = colors.textPale;
+
+// Extra pale text (subtle)
+final xpale = colors.textXPale;
+```
+
+## Available Tokens
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `text` | <span style={{display:'inline-block',width:16,height:16,background:'#31343B',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#31343B` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#FFFFFF` | Primary text color |
+| `textPale` | <span style={{display:'inline-block',width:16,height:16,background:'#606771',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#606771` | <span style={{display:'inline-block',width:16,height:16,background:'#D9D9D9',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#D9D9D9` | Secondary text |
+| `textXPale` | <span style={{display:'inline-block',width:16,height:16,background:'#707781',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#707781` | <span style={{display:'inline-block',width:16,height:16,background:'#A6A6A6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#A6A6A6` | Tertiary text |
+| `textXXPale` | <span style={{display:'inline-block',width:16,height:16,background:'#9EA2A9',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#9EA2A9` | <span style={{display:'inline-block',width:16,height:16,background:'#808080',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#808080` | Very subtle text |
+| `textInvalid` | <span style={{display:'inline-block',width:16,height:16,background:'#F15A31',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F15A31` | <span style={{display:'inline-block',width:16,height:16,background:'#F15A31',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F15A31` | Error/invalid text |
+
+### Tint Text Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `tintTextPrimary` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4A91',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4A91` | <span style={{display:'inline-block',width:16,height:16,background:'#7586E1',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#7586E1` | Primary tint color for text |
+| `tintTextSecondary` | <span style={{display:'inline-block',width:16,height:16,background:'#795FB3',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#795FB3` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | Secondary tint color for text |
+
+### Special Text Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `heading` | <span style={{display:'inline-block',width:16,height:16,background:'#2E3138',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#2E3138` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#FFFFFF` | Heading text color |
+| `label` | <span style={{display:'inline-block',width:16,height:16,background:'#606771',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#606771` | <span style={{display:'inline-block',width:16,height:16,background:'#9E9B96',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#9E9B96` | Label text color |
+| `primaryText` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4982',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4982` | <span style={{display:'inline-block',width:16,height:16,background:'#848EC4',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#848EC4` | Primary action text |
+| `tabLabelSelected` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4A91',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4A91` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | Selected tab label |
+
+## Usage Examples
+
+### Primary Text
+
+```dart
+NormalText(
+  'Main content text',
+  color: TextColor.initial,  // Uses colors.text
+)
+```
+
+### Secondary Text (Pale)
+
+```dart
+NormalText(
+  'Supporting information',
+  color: TextColor.pale,  // Uses colors.textPale
+)
+```
+
+### Subtle Text (XPale)
+
+```dart
+NormalText(
+  'Metadata or hints',
+  color: TextColor.xpale,  // Uses colors.textXPale
+)
+```
+
+### Error Text
+
+```dart
+NormalText(
+  'Invalid input',
+  color: TextColor.invalid,  // Uses colors.textInvalid
+)
+```
+
+### Tinted Text
+
+```dart
+NormalText(
+  'Highlighted action',
+  color: TextColor.tint,  // Uses colors.tintTextPrimary
+)
+```
+
+## TextColor Enum
+
+The `TextColor` enum maps to these tokens:
+
+```dart
+enum TextColor {
+  initial,      // colors.text
+  pale,         // colors.textPale
+  xpale,        // colors.textXPale
+  xxpale,       // colors.textXXPale
+  tint,         // colors.tintTextPrimary
+  secondaryTint,// colors.tintTextSecondary
+  invalid,      // colors.textInvalid
+  unavailable,  // Special state
+  white,        // Pure white
+  primary,      // Primary action color
+}
+```
+
+## Typography Hierarchy
+
+Use text colors to create visual hierarchy:
+
+| Level | Color | Use Case |
+|-------|-------|----------|
+| Primary | `text` | Main content, headings |
+| Secondary | `textPale` | Descriptions, subtitles |
+| Tertiary | `textXPale` | Metadata, timestamps |
+| Subtle | `textXXPale` | Disabled, placeholders |
+
+## Related Tokens
+
+- **[Background Colors](/tokens/colors/background)** - Background surfaces
+- **[Tint Colors](/tokens/colors/tint)** - Accent colors
+- **[Typography](/tokens/typography/overview)** - Font styles
+

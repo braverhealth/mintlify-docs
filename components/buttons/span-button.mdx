@@ -1,0 +1,129 @@
+---
+title: Span Button
+description: A button rendered as inline text within a text span
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+Used for clickable text that appears inline within paragraphs or other text content. Styled as a hyperlink and integrates seamlessly with surrounding text.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Inline Text">
+    Renders as part of a text span
+  </Card>
+  <Card title="Customizable Color">
+    Override text color via `textColor`
+  </Card>
+  <Card title="Disabled State">
+    Automatically grayed out when `onTap` is null
+  </Card>
+  <Card title="Gesture Recognition">
+    Uses tap gesture recognizer for interaction
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Span Button
+
+```dart
+Text.rich(
+  TextSpan(
+    children: [
+      TextSpan(text: 'By continuing, you agree to our '),
+      SpanButton(
+        text: 'Terms of Service',
+        onTap: () => openTerms(),
+      ).build(),
+      TextSpan(text: ' and '),
+      SpanButton(
+        text: 'Privacy Policy',
+        onTap: () => openPrivacy(),
+      ).build(),
+      TextSpan(text: '.'),
+    ],
+  ),
+)
+```
+
+### With Custom Color
+
+```dart
+SpanButton(
+  text: 'Sign up here',
+  textColor: TextColor.tint,
+  onTap: () => navigateToSignup(),
+)
+```
+
+### Disabled Span Button
+
+```dart
+SpanButton(
+  text: 'Currently unavailable',
+  onTap: null,  // Displays grayed out
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/spanbutton/disabled&preview`}
+  width="100%"
+  height="300"
+/>
+
+## Usage in RichText
+
+SpanButton is designed to work within `Text.rich` or `RichText` widgets:
+
+```dart
+RichText(
+  text: TextSpan(
+    style: typography.textStyle(),
+    children: [
+      TextSpan(text: 'Need help? '),
+      SpanButton(
+        text: 'Contact support',
+        onTap: () => contactSupport(),
+      ).build(),
+    ],
+  ),
+)
+```
+
+## Parameters
+
+<ResponseField name="text" type="String" required>
+  Button label text.
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when button is tapped. Set to `null` to disable.
+</ResponseField>
+
+<ResponseField name="textColor" type="TextColor?">
+  Optional custom text color.
+</ResponseField>
+
+## Text Color Options
+
+| TextColor | Usage |
+|-----------|-------|
+| `TextColor.tint` | Primary brand color |
+| `TextColor.secondaryTint` | Secondary brand color |
+| `TextColor.pale` | Subtle text |
+| `TextColor.invalid` | Error state |
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/spanbutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[LinkButton](/components/buttons/link-button)** - Standalone link button
+- **[TextElements](/components/text/text-elements)** - Text with formatting
+

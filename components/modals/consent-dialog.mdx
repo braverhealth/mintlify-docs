@@ -1,0 +1,166 @@
+---
+title: Consent Dialog
+description: A confirmation dialog with confirm and decline action buttons
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A confirmation dialog with title, optional subtitle, and action buttons. Used to ask the user for confirmation before performing an action.
+
+## Constructors
+
+| Constructor | Description |
+|-------------|-------------|
+| `ConsentDialog` | Full dialog with title and subtitle |
+| `ConsentDialog.withTitleOnly` | Title-only variant (no subtitle) |
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Confirm/Decline Actions">
+    Two-button layout for user decisions
+  </Card>
+  <Card title="Customizable Text">
+    Custom button text and tint
+  </Card>
+  <Card title="Quotation Marks">
+    Optional quotes around subtitle
+  </Card>
+  <Card title="Confirm-Only Mode">
+    Single button variant
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Consent Dialog
+
+```dart
+ConsentDialog(
+  titleText: 'Delete item?',
+  subText: 'This action cannot be undone.',
+  onConfirm: () => deleteItem(),
+  onDecline: () => print('Cancelled'),
+).show(context);
+```
+
+### Title-Only Variant
+
+```dart
+ConsentDialog.withTitleOnly(
+  titleText: 'Are you sure?',
+  onConfirm: () => performAction(),
+).show(context);
+```
+
+### With Quotation Marks
+
+```dart
+ConsentDialog(
+  titleText: i18n.patientConsentDialogTitle,
+  subText: i18n.consentText,
+  confirmText: i18n.iConfirm,
+  declineText: i18n.iDoNotConfirm,
+  showQuotationMark: true,
+  onConfirm: () => setPatientConsent(consentText),
+  onDecline: () {},
+).show(context);
+```
+
+### Confirm-Only Mode
+
+```dart
+ConsentDialog(
+  titleText: 'Success',
+  subText: 'Operation completed.',
+  onConfirm: () {},
+  confirmOnly: true,
+).show(context);
+```
+
+### Destructive Action
+
+```dart
+ConsentDialog(
+  titleText: 'Remove from team?',
+  subText: 'The user will lose access to this workspace.',
+  confirmText: 'Remove',
+  confirmButtonTint: PrimaryButtonTint.warning,
+  onConfirm: () => removeFromTeam(),
+).show(context);
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/consentdialog/destructive-action&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Feature Activation Prompt
+
+```dart
+ConsentDialog(
+  titleText: i18n.genericFeatureMissingTitle,
+  subText: i18n.patientCircleFeatureMissingDescription,
+  confirmText: i18n.genericFeatureActivateCTA,
+  declineText: i18n.genericNotNow,
+  confirmButtonTint: PrimaryButtonTint.secondary,
+  onConfirm: () => launchUrl(activationUrl),
+).show(context);
+```
+
+## Parameters
+
+<ResponseField name="titleText" type="String" required>
+  The main title text displayed in the dialog.
+</ResponseField>
+
+<ResponseField name="onConfirm" type="VoidCallback" required>
+  Callback invoked when the user confirms the action.
+</ResponseField>
+
+<ResponseField name="subText" type="String" required>
+  Subtitle or description text (required for default constructor).
+</ResponseField>
+
+<ResponseField name="onDecline" type="VoidCallback?">
+  Callback invoked when the user declines the action.
+</ResponseField>
+
+<ResponseField name="confirmText" type="String?">
+  Custom text for confirm button. Defaults to localized "OK".
+</ResponseField>
+
+<ResponseField name="declineText" type="String?">
+  Custom text for decline button. Defaults to localized "Cancel".
+</ResponseField>
+
+<ResponseField name="confirmButtonTint" type="PrimaryButtonTint">
+  Tint color for confirm button. Default: `PrimaryButtonTint.primary`.
+</ResponseField>
+
+<ResponseField name="showQuotationMark" type="bool">
+  Wrap subtitle in quotation marks. Default: `false`.
+</ResponseField>
+
+<ResponseField name="autoHideModal" type="bool">
+  Auto-hide modal after button press. Default: `true`.
+</ResponseField>
+
+<ResponseField name="confirmOnly" type="bool">
+  Show only confirm button (no decline). Default: `false`.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/consentdialog/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[InfoDialog](/components/modals/info-dialog)** - Informational dialog
+- **[ConfirmationDialog](/components/modals/confirmation-dialog)** - Alternative dialog
+- **[ModalSurface](/components/modals/modal-surface)** - Modal system
+

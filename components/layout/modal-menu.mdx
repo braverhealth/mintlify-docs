@@ -1,0 +1,167 @@
+---
+title: Modal Menu
+description: A modal menu widget for context and action menus
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A modal menu widget that displays one or more sections of buttons. Used for context menus, action menus, and popup menu scenarios.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multiple Sections">
+    Organize buttons into logical groups
+  </Card>
+  <Card title="Responsive">
+    Adapts padding and spacing for touch and desktop
+  </Card>
+  <Card title="Scrollable">
+    Automatically scrolls when content is too large
+  </Card>
+  <Card title="Dismissible">
+    Closes when tapped outside or scrolled up
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Menu
+
+```dart
+ModalMenu(
+  sections: [
+    ModalMenuSection(
+      buttonGroup: ButtonGroup(
+        buttons: [
+          MenuButton(text: 'Edit', iconName: SvgIconName.edit),
+          MenuButton(text: 'Share', iconName: SvgIconName.share),
+        ],
+      ),
+    ),
+  ],
+).show(context);
+```
+
+### Multiple Sections
+
+```dart
+ModalMenu(
+  sections: [
+    ModalMenuSection(
+      buttonGroup: ButtonGroup(
+        buttons: [
+          MenuButton(text: 'Copy', iconName: SvgIconName.copy),
+          MenuButton(text: 'Paste', iconName: SvgIconName.paste),
+        ],
+      ),
+    ),
+    ModalMenuSection(
+      buttonGroup: ButtonGroup(
+        buttons: [
+          MenuButton.invalid(text: 'Delete', iconName: SvgIconName.trash),
+        ],
+      ),
+    ),
+  ],
+).show(context);
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/menu/modalmenu/basic-menu&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Destructive Action
+
+```dart
+ModalMenu(
+  sections: [
+    ModalMenuSection(
+      buttonGroup: ButtonGroup(
+        buttons: [
+          MenuButton(
+            text: 'Remove from team',
+            iconName: SvgIconName.userMinus,
+            onPressed: () => removeFromTeam(),
+          ),
+          MenuButton.invalid(
+            text: 'Delete account',
+            iconName: SvgIconName.trash,
+            onPressed: () => deleteAccount(),
+          ),
+        ],
+      ),
+    ),
+  ],
+).show(context);
+```
+
+### Showing the Menu
+
+```dart
+// Show positioned near trigger widget
+final modalSurface = ModalSurface.of(context);
+modalSurface.showMenu(
+  ModalMenu(sections: sections),
+  context,  // Position relative to this widget
+);
+
+// Or using the mixin
+myMenu.show(context);
+```
+
+## Parameters
+
+<ResponseField name="sections" type="List<BaseModalMenuSection>" required>
+  Button groups to display.
+</ResponseField>
+
+<ResponseField name="crossAxisAlignment" type="CrossAxisAlignment">
+  Section alignment along cross axis. Default: `CrossAxisAlignment.stretch`.
+</ResponseField>
+
+## ModalMenuSection
+
+```dart
+ModalMenuSection(
+  buttonGroup: ButtonGroup(
+    buttons: [
+      MenuButton(text: 'Option 1'),
+      MenuButton(text: 'Option 2'),
+    ],
+  ),
+)
+```
+
+## Menu Positioning
+
+Menus are positioned near the trigger widget:
+
+```dart
+MenuButton(
+  text: 'More Options',
+  iconName: SvgIconName.moreVertical,
+  onPressed: () {
+    ModalSurface.of(context).showMenu(
+      MyMenu(),
+      context,  // Menu appears near this button
+    );
+  },
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/menu/modalmenu/basic-menu&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[MenuButton](/components/buttons/menu-button)** - Menu item button
+- **[ButtonGroup](/components/buttons/button-group)** - Button grouping
+- **[ModalSurface](/components/modals/modal-surface)** - Modal system
+

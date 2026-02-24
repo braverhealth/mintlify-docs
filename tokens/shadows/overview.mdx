@@ -1,0 +1,166 @@
+---
+title: Shadows Overview
+description: Shadow tokens for elevation and depth effects
+---
+
+Shadow tokens define box shadows for creating depth and elevation effects. Access via `context.getShadows()`.
+
+## Accessing Shadows
+
+```dart
+final shadows = context.getShadows();
+
+// Get a shadow
+final normalShadow = shadows.normal;
+```
+
+## Shadow Scale
+
+| Token | Blur | Description |
+|-------|------|-------------|
+| `subtle` | 2px | Very light depth |
+| `normal` | 4px | Standard cards |
+| `elevated` | 8px | Prominent elevation |
+| `floating` | 16px | Floating elements |
+
+## ShadowSpec Structure
+
+Each shadow is defined with:
+
+```dart
+class ShadowSpec {
+  final double blurRadius;
+  final double offsetX;
+  final double offsetY;
+  final double opacity;
+}
+```
+
+## Usage Examples
+
+### Card Shadow
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: colors.backgroundSecondary,
+    borderRadius: BorderRadius.circular(8),
+    boxShadow: [shadows.normal.toBoxShadow(colors)],
+  ),
+  child: CardContent(),
+)
+```
+
+### Elevated Element
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: colors.backgroundPrimary,
+    borderRadius: BorderRadius.circular(12),
+    boxShadow: [shadows.elevated.toBoxShadow(colors)],
+  ),
+  child: ElevatedContent(),
+)
+```
+
+### Floating Modal
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: colors.backgroundPrimary,
+    borderRadius: BorderRadius.circular(16),
+    boxShadow: [shadows.floating.toBoxShadow(colors)],
+  ),
+  child: ModalContent(),
+)
+```
+
+### Subtle Shadow
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: colors.backgroundSecondary,
+    boxShadow: [shadows.subtle.toBoxShadow(colors)],
+  ),
+  child: SubtleContent(),
+)
+```
+
+## Converting to BoxShadow
+
+Use the extension method to convert ShadowSpec to Flutter's BoxShadow:
+
+```dart
+final boxShadow = shadows.normal.toBoxShadow(colors);
+
+// Or directly in decoration
+BoxDecoration(
+  boxShadow: [shadows.elevated.toBoxShadow(colors)],
+)
+```
+
+## Platform Variants
+
+Shadows adapt to platform:
+
+```dart
+// Get platform-specific shadows
+final shadows = ShadowTokens.forPlatform(
+  DevicePlatform.desktop,
+  isDark: false,
+);
+```
+
+## Elevation Guidelines
+
+| Element | Shadow Token |
+|---------|-------------|
+| Cards, list items | `subtle` |
+| Buttons, inputs | `normal` |
+| Dropdowns, menus | `elevated` |
+| Modals, dialogs | `floating` |
+
+## RoundedContainer with Shadow
+
+```dart
+RoundedContainer.allRounded(
+  radius: 12.0,
+  boxShadow: [shadows.normal.toBoxShadow(colors)],
+  backgroundColor: colors.backgroundPrimary,
+  child: Content(),
+)
+```
+
+## Dark Mode Shadows
+
+Shadows automatically adjust for dark mode - typically reduced opacity for subtler effects on dark backgrounds.
+
+```dart
+// Same code works for both modes
+final shadow = shadows.normal.toBoxShadow(colors);
+// Light mode: more visible shadow
+// Dark mode: reduced opacity shadow
+```
+
+## Multiple Shadows
+
+Combine shadows for complex effects:
+
+```dart
+BoxDecoration(
+  boxShadow: [
+    shadows.subtle.toBoxShadow(colors),
+    shadows.normal.toBoxShadow(colors),
+  ],
+)
+```
+
+## Related Tokens
+
+- **[Borders](/tokens/borders/overview)** - Border radius tokens
+- **[Border Colors](/tokens/colors/border)** - Border and shadow colors
+- **[Background Colors](/tokens/colors/background)** - Surface colors
+

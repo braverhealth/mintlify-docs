@@ -1,0 +1,147 @@
+---
+title: Secondary Button
+description: A secondary button for less prominent actions
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+SecondaryButton is used for secondary actions that support the primary action (e.g., "Cancel", "Skip", "Learn more"). It features a transparent or light background with subtle visual feedback.
+
+## Variants
+
+The button provides multiple constructors for different use cases:
+
+- **SecondaryButton** - Default secondary button with customizable colors
+- **SecondaryButton.transparent** - Fully transparent background
+- **SecondaryButton.light** - Light background with subtle styling
+- **SecondaryButton.invalid** - Error/invalid state styling
+
+## Display Modes
+
+Like PrimaryButton, SecondaryButton supports:
+
+- **Text only** - Display text label
+- **Icon only** - Display icon (requires `iconName`, no `text`)
+- **Icon + Text** - Display both icon and text
+- **Vertical layout** - Stack icon above text (set `isVertical` to true)
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multiple color schemes">
+    Customize appearance via constructor choice
+  </Card>
+  <Card title="Large icon support">
+    `largeIcon` parameter for prominent icons
+  </Card>
+  <Card title="Grouped mode">
+    Removes border radius when `grouped` is true
+  </Card>
+  <Card title="Loading state">
+    Shows loading indicator when `isLoading` is true
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Default Secondary Button
+
+```dart
+SecondaryButton(
+  text: 'Cancel',
+  onPressed: () => goBack(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/secondarybutton/default&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Transparent Variant
+
+```dart
+SecondaryButton.transparent(
+  text: 'Skip',
+  onPressed: () => skipStep(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/secondarybutton/transparent&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Light Variant
+
+```dart
+SecondaryButton.light(
+  text: 'Not now',
+  onPressed: () => dismissDialog(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/secondarybutton/light&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Invalid/Error State
+
+```dart
+SecondaryButton.invalid(
+  text: 'Remove',
+  iconName: SvgIconName.trash,
+  onPressed: () => deleteItem(),
+)
+```
+
+## Color Schemes
+
+| Variant | Background | Use Case |
+|---------|------------|----------|
+| `SecondaryButton` | Transparent | Default secondary actions |
+| `.transparent` | Fully transparent | Minimal visual weight |
+| `.light` | Light/subtle fill | Soft emphasis |
+| `.invalid` | Error-tinted | Destructive secondary actions |
+
+## Parameters
+
+<ResponseField name="text" type="String?">
+  The button's text label.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback?">
+  Callback when the button is pressed. Set to `null` to disable.
+</ResponseField>
+
+<ResponseField name="iconName" type="SvgIconName?">
+  Optional icon to display.
+</ResponseField>
+
+<ResponseField name="iconPosition" type="IconPosition">
+  Position of icon relative to text. Defaults to `IconPosition.start`.
+</ResponseField>
+
+<ResponseField name="color" type="SecondaryButtonColor">
+  Background color scheme.
+</ResponseField>
+
+<ResponseField name="grouped" type="bool">
+  When true, removes border radius for use in ButtonGroup.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/secondarybutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+

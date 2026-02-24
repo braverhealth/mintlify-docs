@@ -1,0 +1,171 @@
+---
+title: Text Input
+description: A customizable text input widget for single and multi-line text entry
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A customizable text input widget for single-line and multi-line text entry that extends `BaseTouchableInput`.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multi-line Support">
+    Single-line and multi-line modes with configurable min/max lines
+  </Card>
+  <Card title="Secure Text">
+    Password input with visibility toggle
+  </Card>
+  <Card title="Validation">
+    Visual validation state indication
+  </Card>
+  <Card title="Clear & Copy">
+    Built-in clear button and copy functionality
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Text Input
+
+```dart
+TextInput(
+  placeholder: 'Enter your name',
+  onChanged: (value) => print('Name: $value'),
+)
+```
+
+### Email Input
+
+```dart
+TextInput(
+  placeholder: 'Enter your email',
+  textInputType: TextInputType.emailAddress,
+  autofillHints: [AutofillHints.email],
+  onChanged: (value) => updateEmail(value),
+)
+```
+
+### Password Input
+
+```dart
+TextInput(
+  placeholder: 'Enter your password',
+  secure: true,
+  visibilityButton: true,
+  autofillHints: [AutofillHints.password],
+)
+```
+
+### Multi-line Text Area
+
+```dart
+TextInput(
+  placeholder: 'Enter your message',
+  multiline: true,
+  minLines: 3,
+  maxLines: 10,
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/textinput/multiline&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Validation State
+
+```dart
+TextInput(
+  placeholder: 'Required field',
+  invalid: fieldValue.isEmpty,
+  onChanged: (value) => validate(value),
+)
+```
+
+### With Character Limit
+
+```dart
+TextInput(
+  placeholder: 'Bio (max 150 characters)',
+  maxLength: 150,
+  multiline: true,
+)
+```
+
+## Parameters
+
+<ResponseField name="placeholder" type="String?">
+  Hint text shown when the input is empty.
+</ResponseField>
+
+<ResponseField name="onChanged" type="ValueChanged<String>?">
+  Callback fired when text changes.
+</ResponseField>
+
+<ResponseField name="onEditingComplete" type="VoidCallback?">
+  Callback when editing is complete (e.g., keyboard "done").
+</ResponseField>
+
+<ResponseField name="textInputType" type="TextInputType">
+  Keyboard type (email, phone, number, etc.).
+</ResponseField>
+
+<ResponseField name="textCapitalization" type="TextCapitalization">
+  Auto-capitalize behavior (sentences, words, characters).
+</ResponseField>
+
+<ResponseField name="multiline" type="bool">
+  Enable multi-line mode. Default: `false`.
+</ResponseField>
+
+<ResponseField name="minLines" type="int">
+  Minimum lines for multiline. Default: `3`.
+</ResponseField>
+
+<ResponseField name="maxLines" type="int?">
+  Maximum lines for multiline.
+</ResponseField>
+
+<ResponseField name="maxLength" type="int?">
+  Character limit.
+</ResponseField>
+
+<ResponseField name="secure" type="bool">
+  Enable password masking. Default: `false`.
+</ResponseField>
+
+<ResponseField name="visibilityButton" type="bool">
+  Show password visibility toggle. Default: `false`.
+</ResponseField>
+
+<ResponseField name="clearButton" type="bool">
+  Show clear button when text present.
+</ResponseField>
+
+<ResponseField name="invalid" type="bool">
+  Show validation error styling. Default: `false`.
+</ResponseField>
+
+<ResponseField name="autofillHints" type="List<String>?">
+  Autofill hints (email, password, name, etc.).
+</ResponseField>
+
+<ResponseField name="inputFormatters" type="List<TextInputFormatter>?">
+  Custom text formatters.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/textinput/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[Dropdown](/components/forms/dropdown)** - Select from options
+- **[Datepicker](/components/forms/datepicker)** - Date selection
+- **[TimePicker](/components/forms/time-picker)** - Time selection
+

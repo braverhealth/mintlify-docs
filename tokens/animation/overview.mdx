@@ -1,0 +1,161 @@
+---
+title: Animation Overview
+description: Animation duration and curve tokens for consistent motion
+---
+
+Animation tokens define durations and curves for consistent motion throughout the application. Access via `context.getAnimations()`.
+
+## Accessing Animations
+
+```dart
+final animations = context.getAnimations();
+
+// Get a duration
+final normalDuration = Duration(milliseconds: animations.normalMs);
+```
+
+## Duration Scale
+
+| Token | Duration | Description |
+|-------|----------|-------------|
+| `microMs` | 50ms | Micro-interactions |
+| `fastMs` | 100ms | Very quick, subtle |
+| `quickMs` | 150ms | Quick but noticeable |
+| `normalMs` | 200ms | Standard duration |
+| `mediumMs` | 300ms | Medium-paced |
+| `slowMs` | 400ms | Slower, prominent |
+| `verySlowMs` | 500ms | Very slow |
+| `emphasisMs` | 600ms | Emphasis animations |
+
+## Platform-Adaptive Durations
+
+| Token | Description |
+|-------|-------------|
+| `buttonPressMs` | Button press feedback |
+| `modalPresentationMs` | Modal show/hide |
+| `navigationMs` | Page transitions |
+
+These vary by platform for native feel.
+
+## Usage Examples
+
+### Basic Animation
+
+```dart
+AnimatedContainer(
+  duration: Duration(milliseconds: animations.normalMs),
+  curve: Curves.easeOut,
+  color: isActive ? colors.tintPrimary : colors.backgroundSecondary,
+  child: Content(),
+)
+```
+
+### Button Press Animation
+
+```dart
+AnimatedContainer(
+  duration: Duration(milliseconds: animations.buttonPressMs),
+  curve: Curves.easeInOut,
+  transform: Matrix4.identity()..scale(isPressed ? 0.95 : 1.0),
+  child: ButtonContent(),
+)
+```
+
+### Fade Animation
+
+```dart
+AnimatedOpacity(
+  duration: Duration(milliseconds: animations.quickMs),
+  opacity: isVisible ? 1.0 : 0.0,
+  child: Content(),
+)
+```
+
+### Slide Animation
+
+```dart
+AnimatedSlide(
+  duration: Duration(milliseconds: animations.mediumMs),
+  curve: Curves.easeOut,
+  offset: isShowing ? Offset.zero : Offset(0, 1),
+  child: Panel(),
+)
+```
+
+## AnimationSpecData
+
+Animation specifications include curve information:
+
+```dart
+class AnimationSpecData {
+  final int durationMs;
+  final String curveId;
+  final double? springDamping;
+  final double? springStiffness;
+}
+```
+
+## Common Curves
+
+| Curve ID | Use Case |
+|----------|----------|
+| `easeOut` | Elements appearing |
+| `easeIn` | Elements disappearing |
+| `easeInOut` | State changes |
+| `spring` | Bouncy interactions |
+
+## Platform Variants
+
+Animations adapt to platform conventions:
+
+```dart
+// Get platform-specific animations
+final animations = AnimationTokens.forPlatform(
+  DevicePlatform.mobileIOS,
+  isDark: false,
+);
+
+// iOS: longer, more fluid animations
+// Android: snappier animations
+// Desktop: quick, subtle animations
+```
+
+## AnimatedTouchBackground
+
+Touch feedback uses animation tokens:
+
+```dart
+AnimatedTouchBackground(
+  semanticLabel: 'Tap me',
+  onTap: () => handleTap(),
+  child: Content(),
+)
+```
+
+## Loading State Animation
+
+```dart
+AnimatedSwitcher(
+  duration: Duration(milliseconds: animations.normalMs),
+  child: isLoading
+    ? LoadingIndicator(key: ValueKey('loading'))
+    : Content(key: ValueKey('content')),
+)
+```
+
+## Animation Guidelines
+
+| Interaction | Duration |
+|-------------|----------|
+| Micro-feedback | `microMs` (50ms) |
+| Button press | `buttonPressMs` |
+| State change | `normalMs` (200ms) |
+| Panel slide | `mediumMs` (300ms) |
+| Modal present | `modalPresentationMs` |
+| Page transition | `navigationMs` |
+
+## Related Tokens
+
+- **[Colors](/tokens/colors/overview)** - Animated color transitions
+- **[Spacing](/tokens/spacing/overview)** - Animated spacing changes
+

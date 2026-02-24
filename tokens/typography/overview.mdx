@@ -1,0 +1,140 @@
+---
+title: Typography Overview
+description: Typography system for consistent text styling across the application
+---
+
+The typography system provides consistent text styling through `BraverTypography`, accessible via `context.getTypography()`. It includes font sizes, weights, and semantic text styles.
+
+## Accessing Typography
+
+```dart
+final typography = context.getTypography();
+
+// Create a text style
+final style = typography.textStyle(
+  fontSize: 16.0,
+  weight: TextWeight.bold,
+);
+```
+
+## Font Size Scale
+
+| Size | Value | Use Case |
+|------|-------|----------|
+| `xxlarge` | 32px | Hero headings |
+| `xlarge` | 24px | Page titles |
+| `large` | 20px | Section headings |
+| `medium` | 16px | Body text |
+| `small` | 14px | Secondary text |
+| `xsmall` | 12px | Captions, metadata |
+| `xxsmall` | 11px | Fine print |
+| `xxxsmall` | 10px | Very small labels |
+
+## Text Weights
+
+```dart
+enum TextWeight {
+  regular,   // 400
+  medium,    // 500
+  semibold,  // 600
+  bold,      // 700
+}
+```
+
+## Usage Examples
+
+### Heading Text
+
+```dart
+Heading('Page Title')
+
+// Or with explicit styling
+Text(
+  'Page Title',
+  style: typography.textStyle(
+    fontSize: 24.0,
+    weight: TextWeight.bold,
+  ),
+)
+```
+
+### Normal Text
+
+```dart
+NormalText(
+  'Body content text',
+  size: TextSize.medium,
+  weight: TextWeight.regular,
+)
+```
+
+### Small Text
+
+```dart
+NormalText(
+  'Caption or metadata',
+  size: TextSize.small,
+  color: TextColor.pale,
+)
+```
+
+### Bold Text
+
+```dart
+NormalText(
+  'Important information',
+  weight: TextWeight.bold,
+)
+```
+
+## Text Components
+
+The flutter_ui package provides text components that use typography tokens:
+
+| Component | Description |
+|-----------|-------------|
+| `Heading` | Page and section headings |
+| `NormalText` | Body text with configurable size/weight/color |
+| `SmallText` | Smaller text variant |
+| `XSmallText` | Extra small text |
+| `LabelText` | Form labels |
+| `AvatarText` | Avatar initials |
+
+## TextStyle Builder
+
+Build custom text styles:
+
+```dart
+final style = typography.textStyle(
+  fontSize: 18.0,
+  weight: TextWeight.semibold,
+  color: colors.textPale,
+  decoration: TextDecoration.underline,
+);
+
+Text('Custom styled text', style: style);
+```
+
+## Heading Levels
+
+```dart
+enum HeadingLevel { h1, h2, h3, h5, h6 }
+
+Heading.h1('Main Heading')
+Heading.h2('Section Heading')
+Heading.h3('Subsection Heading')
+```
+
+## Label Sizes
+
+```dart
+enum LabelSize { small, medium, large }
+
+LabelText('Field Label', size: LabelSize.medium)
+```
+
+## Related Tokens
+
+- **[Text Styles](/tokens/typography/text-styles)** - Predefined text styles
+- **[Text Colors](/tokens/colors/text)** - Text color tokens
+

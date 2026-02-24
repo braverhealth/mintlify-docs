@@ -1,0 +1,139 @@
+---
+title: Tint Colors
+description: Accent and brand tint color tokens
+---
+
+Tint color tokens provide brand accent colors used for interactive elements, highlights, and visual emphasis. These colors create the distinctive Braver visual identity.
+
+## Accessing Tint Colors
+
+```dart
+final colors = context.getColors();
+
+// Primary tint (main brand color)
+final primary = colors.tintPrimary;
+
+// Secondary tint (complementary accent)
+final secondary = colors.tintSecondary;
+
+// Tertiary tint (subtle accent)
+final tertiary = colors.tintTertiary;
+```
+
+## Available Tokens
+
+### Core Tint Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `tintPrimary` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4982',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4982` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4982',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4982` | Main brand accent (purple) |
+| `tintSecondary` | <span style={{display:'inline-block',width:16,height:16,background:'#9882CA',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#9882CA` | <span style={{display:'inline-block',width:16,height:16,background:'#9882CA',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#9882CA` | Secondary accent (lighter purple) |
+| `tintSecondaryTransparent` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(152,130,202,0.3)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#4D9882CA` | <span style={{display:'inline-block',width:16,height:16,background:'rgba(152,130,202,0.2)',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#339882CA` | Transparent secondary accent |
+| `tintSecondaryBright` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | Bright secondary (non-adaptive) |
+| `tintTertiary` | <span style={{display:'inline-block',width:16,height:16,background:'#F2F2FB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F2F2FB` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | Tertiary accent |
+| `tintTertiaryBackground` | <span style={{display:'inline-block',width:16,height:16,background:'#F2F2FB',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F2F2FB` | <span style={{display:'inline-block',width:16,height:16,background:'#2E3660',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#2E3660` | Background variant of tertiary |
+
+### Tint Text Colors
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `tintTextPrimary` | <span style={{display:'inline-block',width:16,height:16,background:'#3E4A91',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#3E4A91` | <span style={{display:'inline-block',width:16,height:16,background:'#7586E1',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#7586E1` | Primary tint for text |
+| `tintTextSecondary` | <span style={{display:'inline-block',width:16,height:16,background:'#795FB3',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#795FB3` | <span style={{display:'inline-block',width:16,height:16,background:'#C6ADFC',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#C6ADFC` | Secondary tint for text |
+
+## Usage Examples
+
+### Interactive Elements
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: colors.tintPrimary,
+    borderRadius: BorderRadius.circular(8),
+  ),
+  child: Text('Selected', style: TextStyle(color: Colors.white)),
+)
+```
+
+### Selection State
+
+```dart
+Container(
+  color: isSelected ? colors.tintPrimary : colors.backgroundSecondary,
+  child: ListItem(...),
+)
+```
+
+### Accent Background
+
+```dart
+Container(
+  color: colors.tintTertiaryBackground,
+  child: HighlightedContent(),
+)
+```
+
+### Tinted Text
+
+```dart
+NormalText(
+  'View details',
+  color: TextColor.tint,  // Uses tintTextPrimary
+)
+```
+
+## Button Tints
+
+Buttons use tint colors for their different states:
+
+```dart
+PrimaryButton(
+  text: 'Submit',
+  tint: PrimaryButtonTint.primary,  // tintPrimary
+  onPressed: () => submit(),
+)
+
+PrimaryButton(
+  text: 'Secondary Action',
+  tint: PrimaryButtonTint.secondary,  // tintSecondary
+  onPressed: () => action(),
+)
+```
+
+## Special Colors
+
+### Grey Transparent
+
+```dart
+// Semi-transparent overlay
+Container(
+  color: colors.greyTransparent,
+  child: OverlayContent(),
+)
+```
+
+## Adaptive Behavior
+
+Tint colors adapt to brightness while maintaining brand consistency:
+
+```dart
+// In light mode: vibrant purple
+// In dark mode: slightly adjusted for dark backgrounds
+final tint = colors.tintPrimary;
+```
+
+## Use Cases
+
+| Use Case | Token |
+|----------|-------|
+| Primary buttons | `tintPrimary` |
+| Selected tabs | `tintPrimary` |
+| Links | `tintTextPrimary` |
+| Chips/tags | `tintSecondary` |
+| Subtle highlights | `tintTertiaryBackground` |
+
+## Related Tokens
+
+- **[Text Colors](/tokens/colors/text)** - Text color tokens
+- **[Accent Colors](/tokens/colors/accent)** - Semantic accent colors
+- **[Background Colors](/tokens/colors/background)** - Background surfaces
+

@@ -1,0 +1,117 @@
+---
+title: Nav Button
+description: A circular icon button for navigation and primary actions
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A specialized button designed for navigation controls and prominent icon-based actions. Features a circular shape with a solid background and smooth scale animation on interaction.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Icon-only">
+    Displays only an icon (no text)
+  </Card>
+  <Card title="Circular Shape">
+    Always renders as a perfect circle
+  </Card>
+  <Card title="Scale Animation">
+    Smooth scale transition on tap
+  </Card>
+  <Card title="Shadow Support">
+    Drop shadow in light themes
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Navigation Button
+
+```dart
+NavButton(
+  iconName: SvgIconName.arrowLeft,
+  semanticLabel: S.of(context).goBackButton,
+  onPressed: () => goBack(),
+)
+```
+
+### Large Navigation Button
+
+```dart
+NavButton(
+  size: ButtonSize.large,
+  iconName: SvgIconName.home,
+  semanticLabel: S.of(context).homeButton,
+  onPressed: () => goHome(),
+)
+```
+
+### Disabled Navigation Button
+
+```dart
+NavButton(
+  iconName: SvgIconName.forward,
+  semanticLabel: S.of(context).forwardButton,
+  onPressed: null,  // Automatically disabled
+)
+```
+
+### Close Button
+
+```dart
+NavButton(
+  iconName: SvgIconName.close,
+  semanticLabel: S.of(context).closeButton,
+  onPressed: () => closeModal(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/navbutton/selected-state&preview`}
+  width="100%"
+  height="300"
+/>
+
+## Parameters
+
+<ResponseField name="iconName" type="SvgIconName" required>
+  The icon to display.
+</ResponseField>
+
+<ResponseField name="size" type="ButtonSize">
+  Button size. Supports all ButtonSize values.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback?">
+  Callback when button is pressed. Set to `null` to disable.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?" required>
+  Accessibility label for screen readers. Required for icon-only buttons.
+</ResponseField>
+
+<ResponseField name="key" type="Key?">
+  Widget key for testing.
+</ResponseField>
+
+## Button Sizes
+
+| Size | Use Case |
+|------|----------|
+| `ButtonSize.small` | Compact UI, inline actions |
+| `ButtonSize.medium` | Default size |
+| `ButtonSize.large` | Prominent navigation |
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/navbutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[OutlineButton](/components/buttons/outline-button)** - Circular outline button
+- **[HudButton](/components/buttons/hud-button)** - Transparent HUD button
+

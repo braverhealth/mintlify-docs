@@ -1,0 +1,149 @@
+---
+title: Time Picker
+description: A time picker widget with modal time selection
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A time picker widget that displays a modal time selection interface. Provides simple time selection in 24-hour format.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Modal Dialog">
+    Time picker in 24-hour format
+  </Card>
+  <Card title="HH:MM Display">
+    Clear time display
+  </Card>
+  <Card title="Validation">
+    Visual validation state
+  </Card>
+  <Card title="Reactive">
+    Optional value notifier support
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Time Picker
+
+```dart
+TimePicker(
+  initialTime: TimeOfDay(hour: 14, minute: 30),
+  onTimeSelected: (time) => print('Selected: $time'),
+)
+```
+
+### For Appointments
+
+```dart
+TimePicker(
+  initialTime: TimeOfDay(hour: 9, minute: 0),
+  onTimeSelected: (time) => scheduleAppointment(time),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/timepicker/appointment-times&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Validation
+
+```dart
+TimePicker(
+  initialTime: selectedTime ?? TimeOfDay.now(),
+  invalid: selectedTime == null,
+  onTimeSelected: (time) => setTime(time),
+)
+```
+
+### With Value Notifier
+
+```dart
+final timeNotifier = ValueNotifier<TimeOfDay?>(null);
+
+TimePicker(
+  initialTime: TimeOfDay.now(),
+  valueNotifier: timeNotifier,
+  onTimeSelected: (time) => handleTimeChange(time),
+)
+```
+
+## Use Cases
+
+- Appointment time selection
+- Shift scheduling
+- Reminder time configuration
+- Meeting time selection
+- Event scheduling
+
+## Parameters
+
+<ResponseField name="initialTime" type="TimeOfDay" required>
+  Initial time value.
+</ResponseField>
+
+<ResponseField name="onTimeSelected" type="ValueChanged<TimeOfDay?>" required>
+  Callback on time selection.
+</ResponseField>
+
+<ResponseField name="valueNotifier" type="ValueNotifier<TimeOfDay?>?">
+  Optional reactive value notifier.
+</ResponseField>
+
+<ResponseField name="invalid" type="bool">
+  Show validation error. Default: `false`.
+</ResponseField>
+
+## TimeOfDay
+
+Flutter's built-in TimeOfDay class:
+
+```dart
+// Create a time
+final time = TimeOfDay(hour: 14, minute: 30);
+
+// Get current time
+final now = TimeOfDay.now();
+
+// Format for display
+final formatted = time.format(context);  // "2:30 PM"
+```
+
+## Combined Date and Time
+
+Use both Datepicker and TimePicker together:
+
+```dart
+Column(
+  children: [
+    Datepicker(
+      placeholder: 'Select date',
+      closeLabel: 'Done',
+      onSelection: (date) => setDate(date),
+    ),
+    SizedBox(height: 16),
+    TimePicker(
+      initialTime: TimeOfDay.now(),
+      onTimeSelected: (time) => setTime(time),
+    ),
+  ],
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/timepicker/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[Datepicker](/components/forms/datepicker)** - Date selection
+- **[TextInput](/components/forms/text-input)** - Text entry
+- **[Dropdown](/components/forms/dropdown)** - Option selection
+

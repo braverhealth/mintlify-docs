@@ -1,0 +1,166 @@
+---
+title: Dropdown
+description: A generic dropdown widget for selecting from a list of options
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A generic dropdown/select widget for choosing from a list of options. Supports any type with custom text formatting.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Generic Types">
+    Works with any data type using `Dropdown<T>`
+  </Card>
+  <Card title="Custom Formatting">
+    Define how options are displayed
+  </Card>
+  <Card title="Sorting">
+    Optional ascending/descending ordering
+  </Card>
+  <Card title="Validation">
+    Visual validation state support
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Simple String Dropdown
+
+```dart
+Dropdown<String>(
+  placeholder: 'Select an option',
+  closeLabel: 'Done',
+  options: ['Option 1', 'Option 2', 'Option 3'],
+  optionText: (option) => option,
+  onSelection: (selected) => print('Selected: $selected'),
+)
+```
+
+### Custom Type Dropdown
+
+```dart
+Dropdown<Country>(
+  placeholder: 'Select country',
+  closeLabel: 'Done',
+  options: countries,
+  optionText: (country) => country.name,
+  onSelection: (country) => updateCountry(country),
+)
+```
+
+### With Pre-selected Value
+
+```dart
+Dropdown<Language>(
+  placeholder: 'Select language',
+  closeLabel: 'Done',
+  options: availableLanguages,
+  optionText: (lang) => lang.displayName,
+  selectedOption: currentLanguage,
+  onSelection: (lang) => changeLanguage(lang),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/dropdown/with-selection&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Validation State
+
+```dart
+Dropdown<String>(
+  placeholder: 'Required field',
+  closeLabel: 'Done',
+  options: options,
+  optionText: (o) => o,
+  invalid: selectedValue == null,
+  onSelection: (value) => validate(value),
+)
+```
+
+### Disabled State
+
+```dart
+Dropdown<String>(
+  placeholder: 'Not available',
+  closeLabel: 'Done',
+  options: [],
+  optionText: (o) => o,
+  enabled: false,
+)
+```
+
+## Parameters
+
+<ResponseField name="options" type="List<T>" required>
+  List of selectable items.
+</ResponseField>
+
+<ResponseField name="optionText" type="String Function(T)" required>
+  Function to format option display text.
+</ResponseField>
+
+<ResponseField name="closeLabel" type="String" required>
+  Label for the close button in the picker.
+</ResponseField>
+
+<ResponseField name="placeholder" type="String?">
+  Hint text when no option selected.
+</ResponseField>
+
+<ResponseField name="selectedOption" type="T?">
+  Pre-selected option.
+</ResponseField>
+
+<ResponseField name="onSelection" type="ValueChanged<T>?">
+  Callback when an option is selected.
+</ResponseField>
+
+<ResponseField name="onDismiss" type="VoidCallback?">
+  Callback when the picker is dismissed.
+</ResponseField>
+
+<ResponseField name="onOpen" type="VoidCallback?">
+  Callback before opening (can prevent opening by returning false).
+</ResponseField>
+
+<ResponseField name="clearButton" type="bool">
+  Show clear button to reset selection. Default: `true`.
+</ResponseField>
+
+<ResponseField name="invalid" type="bool">
+  Show validation error styling. Default: `false`.
+</ResponseField>
+
+<ResponseField name="ordering" type="Ordering">
+  Sort options: `ascending`, `descending`, or `none`.
+</ResponseField>
+
+<ResponseField name="enabled" type="bool">
+  Enable/disable the dropdown. Default: `true`.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+<ResponseField name="valueNotifier" type="ValueNotifier<T?>?">
+  Reactive value notifier for external control.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/dropdown/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[TextInput](/components/forms/text-input)** - Text entry
+- **[Datepicker](/components/forms/datepicker)** - Date selection
+

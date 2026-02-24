@@ -1,0 +1,121 @@
+---
+title: Toggle Button
+description: A button that toggles between enabled and disabled visual states
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+Displays different button styles based on its `isEnabled` state. When enabled, shows as a PrimaryButton. When disabled, shows as a SecondaryButton.transparent with a larger icon.
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| `ToggleButton.text` | Toggle button with text label |
+| `ToggleButton.icon` | Toggle button with icon only |
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="State-based Styling">
+    Automatically switches appearance based on `isEnabled`
+  </Card>
+  <Card title="Customizable Size">
+    Supports all button sizes
+  </Card>
+  <Card title="Icon or Text">
+    Display either icon or text content
+  </Card>
+  <Card title="Semantic Labels">
+    Supports accessibility labels
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Text Toggle Button
+
+```dart
+ToggleButton.text(
+  text: 'Notifications',
+  isEnabled: notificationsEnabled,
+  size: ButtonSize.medium,
+  onPressed: () => toggleNotifications(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/togglebutton/text&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Icon Toggle Button
+
+```dart
+ToggleButton.icon(
+  iconName: SvgIconName.bell,
+  isEnabled: notificationsEnabled,
+  size: ButtonSize.medium,
+  semanticLabel: S.of(context).toggleNotificationsButton,
+  onPressed: () => toggleNotifications(),
+)
+```
+
+### Large Toggle Button
+
+```dart
+ToggleButton.icon(
+  iconName: SvgIconName.microphone,
+  isEnabled: isMuted,
+  size: ButtonSize.large,
+  semanticLabel: S.of(context).toggleMuteButton,
+  onPressed: () => toggleMute(),
+)
+```
+
+## State Behavior
+
+| State | Appearance |
+|-------|------------|
+| `isEnabled: true` | PrimaryButton styling (filled, prominent) |
+| `isEnabled: false` | SecondaryButton.transparent (subtle, larger icon) |
+
+## Parameters
+
+<ResponseField name="text" type="String" required>
+  Button label text (for `.text` variant).
+</ResponseField>
+
+<ResponseField name="iconName" type="SvgIconName" required>
+  Icon to display (for `.icon` variant).
+</ResponseField>
+
+<ResponseField name="isEnabled" type="bool" required>
+  Current toggle state.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback" required>
+  Callback when button is pressed.
+</ResponseField>
+
+<ResponseField name="size" type="ButtonSize" required>
+  Button size.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/togglebutton/icon&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[PrimaryButton](/components/buttons/primary-button)** - Enabled state appearance
+- **[SecondaryButton](/components/buttons/secondary-button)** - Disabled state appearance
+

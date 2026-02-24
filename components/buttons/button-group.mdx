@@ -1,0 +1,143 @@
+---
+title: Button Group
+description: A container for grouping multiple buttons together
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A container that groups multiple buttons together with consistent spacing and layout. Supports both vertical and horizontal arrangements.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Flexible Layout">
+    Supports vertical and horizontal arrangements
+  </Card>
+  <Card title="Automatic Spacing">
+    Configurable gap between buttons
+  </Card>
+  <Card title="Button Grouping">
+    Provides context to buttons about their position
+  </Card>
+  <Card title="Responsive Sizing">
+    Adjusts spacing based on device type
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Vertical Button Group (Default)
+
+```dart
+ButtonGroup(
+  buttons: [
+    PrimaryButton(text: 'Sign in', onPressed: () => signIn()),
+    SecondaryButton(text: 'Create account', onPressed: () => createAccount()),
+    LinkButton(text: 'Forgot password?', onPressed: () => forgotPassword()),
+  ],
+)
+```
+
+### Horizontal Button Group
+
+```dart
+ButtonGroup(
+  axis: Axis.horizontal,
+  buttons: [
+    PrimaryButton(text: 'Cancel', grouped: true, onPressed: () => cancel()),
+    PrimaryButton(text: 'Confirm', grouped: true, onPressed: () => confirm()),
+  ],
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/buttongroup/horizontal-group&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Grouped Buttons (Connected)
+
+When buttons have `grouped: true`, they connect visually:
+
+```dart
+ButtonGroup(
+  axis: Axis.horizontal,
+  buttons: [
+    PrimaryButton(text: 'Yes', grouped: true, onPressed: () => select(true)),
+    PrimaryButton(text: 'No', grouped: true, onPressed: () => select(false)),
+  ],
+)
+```
+
+### Custom Gap Size
+
+```dart
+ButtonGroup(
+  gapSize: 24.0,
+  buttons: [
+    PrimaryButton(text: 'Primary Action', onPressed: () => primary()),
+    SecondaryButton(text: 'Secondary Action', onPressed: () => secondary()),
+  ],
+)
+```
+
+### Center Aligned
+
+```dart
+ButtonGroup(
+  crossAxisAlignment: CrossAxisAlignment.center,
+  mainAxisSize: MainAxisSize.min,
+  buttons: [
+    PrimaryButton(text: 'Continue', onPressed: () => next()),
+  ],
+)
+```
+
+## Parameters
+
+<ResponseField name="buttons" type="List<Widget>" required>
+  List of button widgets to group.
+</ResponseField>
+
+<ResponseField name="axis" type="Axis">
+  Layout direction. Default: `Axis.vertical`.
+</ResponseField>
+
+<ResponseField name="mainAxisAlignment" type="MainAxisAlignment">
+  Main axis alignment. Default: `MainAxisAlignment.start`.
+</ResponseField>
+
+<ResponseField name="crossAxisAlignment" type="CrossAxisAlignment">
+  Cross axis alignment. Default: `CrossAxisAlignment.center`.
+</ResponseField>
+
+<ResponseField name="mainAxisSize" type="MainAxisSize">
+  Main axis size. Default: `MainAxisSize.max`.
+</ResponseField>
+
+<ResponseField name="gapSize" type="double?">
+  Space between buttons. Default: auto-calculated.
+</ResponseField>
+
+## Button `grouped` Parameter
+
+When buttons are used within a ButtonGroup and set `grouped: true`:
+
+- Border radius is removed for connected appearance
+- First and last buttons get rounded corners on their outer edges
+- Middle buttons have no rounded corners
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/buttongroup/horizontal-group&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[PrimaryButton](/components/buttons/primary-button)** - Primary actions
+- **[SecondaryButton](/components/buttons/secondary-button)** - Secondary actions
+- **[MenuButton](/components/buttons/menu-button)** - Menu items
+

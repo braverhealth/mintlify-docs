@@ -1,0 +1,121 @@
+---
+title: Selectable Tile Button
+description: A card-like selectable tile with rounded corners and touch feedback
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Card-like Appearance">
+    Rounded corners with border support
+  </Card>
+  <Card title="Touch Feedback">
+    Scale transformation and background color change
+  </Card>
+  <Card title="Customizable Styling">
+    Optional custom colors and border radius
+  </Card>
+  <Card title="Accessibility">
+    Requires semantic label
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Selectable Tile
+
+```dart
+SelectableTileButton(
+  semanticLabel: S.of(context).selectSessionButton,
+  onTap: () => selectSession(),
+  child: SessionContent(),
+)
+```
+
+### With Custom Border Radius
+
+```dart
+SelectableTileButton(
+  semanticLabel: S.of(context).selectItemButton,
+  borderRadius: 16.0,
+  onTap: () => selectItem(),
+  child: ItemContent(),
+)
+```
+
+### With Border
+
+```dart
+SelectableTileButton(
+  semanticLabel: S.of(context).selectOptionButton,
+  border: Border.all(color: colors.border),
+  onTap: () => selectOption(),
+  child: OptionContent(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/selectabletilebutton/with-border&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Inactive State
+
+```dart
+SelectableTileButton(
+  semanticLabel: S.of(context).viewDetailsButton,
+  active: false,  // Does not react to touch
+  onTap: () {},
+  child: Content(),
+)
+```
+
+## Parameters
+
+<ResponseField name="child" type="Widget" required>
+  Widget to display inside tile.
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when tile is tapped.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String" required>
+  Accessibility label for screen readers.
+</ResponseField>
+
+<ResponseField name="active" type="bool">
+  Whether tile reacts to touch. Default: `true`.
+</ResponseField>
+
+<ResponseField name="borderRadius" type="double?">
+  Border radius. Default: medium from design system.
+</ResponseField>
+
+<ResponseField name="padding" type="EdgeInsets">
+  Padding around child. Default: `EdgeInsets.zero`.
+</ResponseField>
+
+<ResponseField name="colors" type="TouchableInputParameters?">
+  Optional custom colors.
+</ResponseField>
+
+<ResponseField name="border" type="BoxBorder?">
+  Optional border around tile.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/selectabletilebutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[SelectableChoiceCard](/components/buttons/selectable-choice-card)** - Form choice card
+- **[TappableListItem](/components/lists/tappable-list-item)** - List item interaction
+

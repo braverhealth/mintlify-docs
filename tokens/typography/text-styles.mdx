@@ -1,0 +1,172 @@
+---
+title: Text Styles
+description: Predefined text styles for common use cases
+---
+
+Predefined text styles provide consistent typography patterns for common UI elements like buttons, labels, and links.
+
+## Button Typography
+
+Button text styles vary by size:
+
+```dart
+enum ButtonTypographySize {
+  xxsmall,
+  xsmall,
+  small,
+  medium,
+  large,
+  xlarge,
+  menu,
+}
+```
+
+### Button Usage
+
+```dart
+// Button automatically uses correct typography
+PrimaryButton(
+  text: 'Submit',
+  size: ButtonSize.medium,
+  onPressed: () => submit(),
+)
+```
+
+## Label Typography
+
+Labels for form elements and UI sections:
+
+```dart
+enum LabelSize { small, medium, large }
+enum LabelVariant { standard, tinted }
+
+// Standard label
+LabelText('Email Address', size: LabelSize.medium)
+
+// Tinted label
+LabelText(
+  'Required Field',
+  size: LabelSize.small,
+  variant: LabelVariant.tinted,
+)
+```
+
+## Link Typography
+
+Link text styles with weight and color variants:
+
+```dart
+enum LinkWeight { regular, semibold, bold }
+enum LinkVariant { primary, secondary }
+
+SpanButton(
+  text: 'Learn more',
+  weight: TextWeight.semibold,
+  onTap: () => openLink(),
+)
+```
+
+## Tab Label Typography
+
+Tab bar labels with selection states:
+
+```dart
+enum TabLabelVariant { unselected, selected }
+
+// Selected tab has different styling
+BraverTab(
+  text: 'Messages',
+  index: 0,
+  controller: tabController,
+)
+```
+
+## Avatar Typography
+
+Text styles for avatar initials:
+
+```dart
+enum AvatarTypographySize {
+  standard,  // Default size
+  medium,    // Medium avatars
+  small,     // Small avatars
+  xsmall,    // Extra small
+  mega,      // Large display avatars
+}
+
+AvatarText(
+  'JD',
+  size: TextSize.large,
+  mega: false,
+)
+```
+
+## Heading Styles
+
+Predefined heading levels:
+
+```dart
+enum HeadingLevel { h1, h2, h3, h5, h6 }
+
+// Usage
+Heading.h1('Page Title')
+Heading.h2('Section Title')
+Heading.h3('Subsection')
+```
+
+| Level | Font Size | Weight | Use Case |
+|-------|-----------|--------|----------|
+| H1 | 32px | Bold | Page titles |
+| H2 | 24px | Bold | Section headings |
+| H3 | 20px | Semibold | Subsections |
+| H5 | 16px | Semibold | Card titles |
+| H6 | 14px | Semibold | Small headings |
+
+## TextSize Enum
+
+Standard text sizes used throughout:
+
+```dart
+enum TextSize {
+  xsmall,   // 12px
+  small,    // 14px
+  medium,   // 16px - default
+  large,    // 20px
+}
+```
+
+## Creating Custom Styles
+
+Build on top of base typography:
+
+```dart
+final typography = context.getTypography();
+
+// Custom style with typography tokens
+final customStyle = typography.textStyle(
+  fontSize: 18.0,
+  weight: TextWeight.semibold,
+).copyWith(
+  letterSpacing: 0.5,
+  height: 1.5,
+);
+```
+
+## TextStyleData
+
+Raw style data structure:
+
+```dart
+class TextStyleData {
+  final double fontSize;
+  final int fontWeight;  // 400, 500, 600, 700
+  final String? colorPath;
+  final String? fontFamily;
+}
+```
+
+## Related Tokens
+
+- **[Typography Overview](/tokens/typography/overview)** - Typography system
+- **[Text Colors](/tokens/colors/text)** - Text color tokens
+

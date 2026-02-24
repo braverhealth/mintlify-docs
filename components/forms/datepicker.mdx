@@ -1,0 +1,177 @@
+---
+title: Datepicker
+description: A date picker widget with modal date selection
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A date picker widget that displays a modal date selection interface. Provides user-friendly date selection with customizable constraints.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Modal Dialog">
+    Customizable date range picker
+  </Card>
+  <Card title="Date Constraints">
+    Min/max date support
+  </Card>
+  <Card title="Custom Formatting">
+    Custom date format for display
+  </Card>
+  <Card title="Validation">
+    Visual validation state indication
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Datepicker
+
+```dart
+Datepicker(
+  placeholder: 'Select a date',
+  closeLabel: 'Done',
+  onSelection: (date) => print('Selected: $date'),
+)
+```
+
+### Birthday Picker (Past Only)
+
+```dart
+Datepicker(
+  placeholder: 'Select your birthday',
+  closeLabel: 'Done',
+  todayIsMax: true,
+  onSelection: (date) => setBirthday(date),
+)
+```
+
+### Future Dates Only
+
+```dart
+Datepicker(
+  placeholder: 'Select appointment date',
+  closeLabel: 'Done',
+  todayIsMin: true,
+  onSelection: (date) => scheduleAppointment(date),
+)
+```
+
+### With Pre-selected Date
+
+```dart
+Datepicker(
+  placeholder: 'Event date',
+  closeLabel: 'Done',
+  initialDate: currentEvent.date,
+  onSelection: (date) => updateEventDate(date),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/datepicker/with-initial-date&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Custom Date Format
+
+```dart
+Datepicker(
+  placeholder: 'Select date',
+  closeLabel: 'Done',
+  dateFormatter: DateFormat('dd/MM/yyyy'),
+  onSelection: (date) => handleDate(date),
+)
+```
+
+### With Validation
+
+```dart
+Datepicker(
+  placeholder: 'Required date',
+  closeLabel: 'Done',
+  invalid: selectedDate == null,
+  onSelection: (date) => setDate(date),
+)
+```
+
+### Disabled State
+
+```dart
+Datepicker(
+  placeholder: 'Date locked',
+  closeLabel: 'Done',
+  initialDate: lockedDate,
+  enabled: false,
+)
+```
+
+## Parameters
+
+<ResponseField name="closeLabel" type="String" required>
+  Label for close button.
+</ResponseField>
+
+<ResponseField name="placeholder" type="String?">
+  Hint text shown when no date selected.
+</ResponseField>
+
+<ResponseField name="initialDate" type="DateTime?">
+  Pre-selected date.
+</ResponseField>
+
+<ResponseField name="onSelection" type="Function(DateTime?)?">
+  Callback on date selection.
+</ResponseField>
+
+<ResponseField name="onDismiss" type="Function()?">
+  Callback on dismiss.
+</ResponseField>
+
+<ResponseField name="dateFormatter" type="DateFormat?">
+  Custom date formatter. Default: `yMMMMd`.
+</ResponseField>
+
+<ResponseField name="todayIsMax" type="bool">
+  Today as maximum date. Default: `false`.
+</ResponseField>
+
+<ResponseField name="todayIsMin" type="bool">
+  Today as minimum date. Default: `false`.
+</ResponseField>
+
+<ResponseField name="maxDate" type="DateTime?">
+  Maximum selectable date. Default: year 2101.
+</ResponseField>
+
+<ResponseField name="invalid" type="bool">
+  Show validation error. Default: `false`.
+</ResponseField>
+
+<ResponseField name="enabled" type="bool">
+  Enable/disable. Default: `true`.
+</ResponseField>
+
+<ResponseField name="clearButton" type="bool">
+  Show clear button. Default: `true`.
+</ResponseField>
+
+<ResponseField name="valueNotifier" type="ValueNotifier<DateTime?>?">
+  Reactive value notifier.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/forms/datepicker/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[TimePicker](/components/forms/time-picker)** - Time selection
+- **[TextInput](/components/forms/text-input)** - Text entry
+- **[Dropdown](/components/forms/dropdown)** - Option selection
+

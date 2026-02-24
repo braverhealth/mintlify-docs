@@ -1,0 +1,90 @@
+---
+title: Installation
+description: How to add Braver Flutter UI to your project
+---
+
+# Installation
+
+Braver Flutter UI is distributed as an internal package within the Braver platform monorepo.
+
+## Adding the Dependency
+
+Add `braver_flutter_ui` to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  braver_flutter_ui:
+    path: ../libraries/flutter_ui
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+## Required Dependencies
+
+The library depends on several packages that are automatically included:
+
+- `braver_design_tokens` - Design token definitions
+- `braver_flutter` - Core Flutter utilities
+- `flutter_bloc` - State management for tokens
+
+## Setup
+
+### 1. Import the Library
+
+```dart
+import 'package:braver_flutter_ui/braver_flutter_ui.dart';
+```
+
+### 2. Wrap Your App with Theme Provider
+
+For the design system to work properly, wrap your app with `BraverTheme`:
+
+```dart
+void main() {
+  runApp(
+    BraverTheme(
+      data: BraverThemeData.defaults(),
+      child: MyApp(),
+    ),
+  );
+}
+```
+
+### 3. (Optional) Enable Dynamic Tokens
+
+To support runtime token updates (e.g., from Figma sync), provide a `DesignTokensCubit`:
+
+```dart
+BlocProvider(
+  create: (_) => DesignTokensCubit(),
+  child: BraverTheme(
+    data: BraverThemeData.defaults(),
+    child: MyApp(),
+  ),
+)
+```
+
+## Verification
+
+Verify the installation by using a simple component:
+
+```dart
+import 'package:braver_flutter_ui/braver_flutter_ui.dart';
+
+class TestWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PrimaryButton(
+      text: 'Hello, Braver UI!',
+      onPressed: () => print('Button pressed'),
+    );
+  }
+}
+```
+
+If the button renders correctly with the Braver design system styling, the installation is complete.
+

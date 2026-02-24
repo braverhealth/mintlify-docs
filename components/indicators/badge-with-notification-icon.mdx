@@ -1,0 +1,146 @@
+---
+title: Badge with Notification Icon
+description: An icon widget with a notification badge overlay
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+An icon widget that displays a notification badge overlay. Used to show activity status or counts on icons in navigation, toolbars, or action buttons.
+
+## Examples
+
+### Basic Usage
+
+```dart
+BadgeWithNotificationIcon(
+  iconName: SvgIconName.bell,
+  hasActivity: hasNotifications,
+)
+```
+
+### With Count
+
+```dart
+CountBadge.withIcon(
+  icon: SvgIcon(SvgIconName.mail, SvgIconSize.medium),
+  iconSize: Size(24, 24),
+  badge: CountBadge.unread(count: unreadCount),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/pin/countbadge/with-count-badge&preview`}
+  width="100%"
+  height="300"
+/>
+
+### In Navigation
+
+```dart
+NavButton(
+  iconName: SvgIconName.inbox,
+  semanticLabel: S.of(context).inboxButton,
+  onPressed: () => openInbox(),
+  child: BadgeWithNotificationIcon(
+    iconName: SvgIconName.inbox,
+    hasActivity: hasUnreadMessages,
+  ),
+)
+```
+
+### In Tab Bar
+
+```dart
+BraverTab(
+  text: 'Messages',
+  index: 1,
+  controller: tabController,
+  icon: SvgIcon(SvgIconName.mail, SvgIconSize.small),
+  activityCount: unreadCount,
+)
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Activity State">
+    Shows/hides badge based on activity
+  </Card>
+  <Card title="Multiple Icon Sizes">
+    Works with various icon sizes
+  </Card>
+  <Card title="Positioning">
+    Badge positioned at top-right corner
+  </Card>
+  <Card title="Animation">
+    Optional animated appearance
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ResponseField name="iconName" type="SvgIconName" required>
+  The icon to display.
+</ResponseField>
+
+<ResponseField name="hasActivity" type="bool" required>
+  Whether to show the notification badge.
+</ResponseField>
+
+<ResponseField name="iconSize" type="SvgIconSize">
+  Size of the icon. Default: `SvgIconSize.medium`.
+</ResponseField>
+
+<ResponseField name="iconColor" type="SvgIconColor">
+  Color of the icon. Default: `SvgIconColor.normal`.
+</ResponseField>
+
+## Use Cases
+
+### Tab Navigation
+
+```dart
+Row(
+  children: [
+    BadgeWithNotificationIcon(
+      iconName: SvgIconName.home,
+      hasActivity: false,
+    ),
+    BadgeWithNotificationIcon(
+      iconName: SvgIconName.mail,
+      hasActivity: hasUnread,
+    ),
+    BadgeWithNotificationIcon(
+      iconName: SvgIconName.settings,
+      hasActivity: hasNewSettings,
+    ),
+  ],
+)
+```
+
+### Toolbar Action
+
+```dart
+HudButton(
+  semanticLabel: S.of(context).notificationsButton,
+  onTap: () => showNotifications(),
+  child: BadgeWithNotificationIcon(
+    iconName: SvgIconName.bell,
+    hasActivity: hasNotifications,
+  ),
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/pin/countbadge/with-count-badge&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[NotificationPin](/components/indicators/notification-pin)** - Simple dot
+- **[CountBadge](/components/indicators/count-badge)** - Numeric counts
+- **[BraverTab](/components/layout/tabs)** - Tab with activity count
+

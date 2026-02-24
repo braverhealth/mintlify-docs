@@ -1,0 +1,147 @@
+---
+title: Tabs
+description: A customizable tab bar for navigation
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A customizable tab bar widget that displays tabs with a bottom indicator. Integrates with Flutter's TabController for managing tab state.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Custom Indicator">
+    Uses BraverTabIndicator for sleek bottom line
+  </Card>
+  <Card title="Responsive Design">
+    Adapts to different screen sizes
+  </Card>
+  <Card title="Activity Badges">
+    Show unread counts on tabs
+  </Card>
+  <Card title="Icon Support">
+    Optional icons with text labels
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Tab Bar
+
+```dart
+BraverTabBar(
+  tabController: tabController,
+  tabs: [
+    BraverTab(text: 'Home', index: 0, controller: tabController),
+    BraverTab(text: 'Messages', index: 1, controller: tabController),
+    BraverTab(text: 'Settings', index: 2, controller: tabController),
+  ],
+)
+```
+
+### With Activity Count
+
+```dart
+BraverTabBar(
+  tabController: tabController,
+  tabs: [
+    BraverTab(
+      text: 'Inbox',
+      index: 0,
+      controller: tabController,
+      activityCount: unreadCount,
+    ),
+    BraverTab(text: 'Sent', index: 1, controller: tabController),
+  ],
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/tabs/bravertabbar/basic-tabs&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Icons
+
+```dart
+BraverTabBar(
+  tabController: tabController,
+  tabs: [
+    BraverTab(
+      text: 'Home',
+      index: 0,
+      controller: tabController,
+      icon: SvgIcon(SvgIconName.home, SvgIconSize.small),
+    ),
+    BraverTab(
+      text: 'Search',
+      index: 1,
+      controller: tabController,
+      icon: SvgIcon(SvgIconName.search, SvgIconSize.small),
+    ),
+  ],
+)
+```
+
+### With Tap Callback
+
+```dart
+BraverTabBar(
+  tabController: tabController,
+  onTap: (index) => trackTabChange(index),
+  tabs: tabs,
+)
+```
+
+## BraverTabBar Parameters
+
+<ResponseField name="tabs" type="List<Widget>" required>
+  List of tabs to display, typically BraverTab widgets.
+</ResponseField>
+
+<ResponseField name="tabController" type="TabController" required>
+  Controller managing tab state.
+</ResponseField>
+
+<ResponseField name="onTap" type="ValueChanged<int>?">
+  Optional callback when tab is tapped.
+</ResponseField>
+
+<ResponseField name="tabStorageKey" type="Key?">
+  Optional key for underlying TabBar widget.
+</ResponseField>
+
+## BraverTab Parameters
+
+<ResponseField name="text" type="String" required>
+  Text label displayed in tab.
+</ResponseField>
+
+<ResponseField name="index" type="int" required>
+  Index of tab in tab bar.
+</ResponseField>
+
+<ResponseField name="controller" type="TabController" required>
+  Controller managing tab state.
+</ResponseField>
+
+<ResponseField name="icon" type="SvgIcon?">
+  Optional icon displayed before text.
+</ResponseField>
+
+<ResponseField name="activityCount" type="int">
+  Number of unread items/notifications. Default: `0`.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/tabs/bravertabbar/basic-tabs&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ModalMenu](/components/layout/modal-menu)** - Dropdown menus
+

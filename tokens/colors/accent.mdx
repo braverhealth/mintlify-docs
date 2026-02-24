@@ -1,0 +1,175 @@
+---
+title: Accent Colors
+description: Semantic accent colors for status, avatars, and special states
+---
+
+Accent colors provide semantic meaning through color - success, warning, error, and decorative purposes like avatars.
+
+## Accessing Accent Colors
+
+```dart
+final colors = context.getColors();
+
+// Status colors (from swatch)
+final success = Color(colors.swatchGreen900);
+final warning = Color(colors.swatchOrange900);
+
+// Avatar colors
+final avatarColors = [
+  Color(colors.avatar1),
+  Color(colors.avatar2),
+  // ... through avatar8
+];
+```
+
+## Available Tokens
+
+### Swatch Colors (Non-adaptive)
+
+| Token | Color | Hex Value | Description |
+|-------|-------|-----------|-------------|
+| `swatchWhite` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#FFFFFF` | Pure white |
+| `swatchBlack` | <span style={{display:'inline-block',width:16,height:16,background:'#000000',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#000000` | Pure black |
+| `swatchOrange900` | <span style={{display:'inline-block',width:16,height:16,background:'#F15A31',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F15A31` | Error/warning (dark) |
+| `swatchOrange700` | <span style={{display:'inline-block',width:16,height:16,background:'#F47C52',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F47C52` | Error/warning (light) |
+| `swatchGreen900` | <span style={{display:'inline-block',width:16,height:16,background:'#26645A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#26645A` | Success (dark) |
+| `swatchGreen700` | <span style={{display:'inline-block',width:16,height:16,background:'#51837B',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#51837B` | Success (light) |
+| `availabilityYellow` | <span style={{display:'inline-block',width:16,height:16,background:'#DEB833',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#DEB833` | Availability indicator |
+| `swatchDarkGrey` | <span style={{display:'inline-block',width:16,height:16,background:'#A9A9A9',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#A9A9A9` | Neutral dark |
+
+### Accent Colors (Adaptive)
+
+| Token | Light Mode | Dark Mode | Description |
+|-------|------------|-----------|-------------|
+| `accentOrange` | <span style={{display:'inline-block',width:16,height:16,background:'#F47C52',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F47C52` | <span style={{display:'inline-block',width:16,height:16,background:'#F47C52',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#F47C52` | Orange accent |
+| `accentGreen` | <span style={{display:'inline-block',width:16,height:16,background:'#26645A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#26645A` | <span style={{display:'inline-block',width:16,height:16,background:'#26645A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#26645A` | Green accent |
+| `accentYellow` | <span style={{display:'inline-block',width:16,height:16,background:'#DEB833',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DEB833` | <span style={{display:'inline-block',width:16,height:16,background:'#DEB833',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> `#DEB833` | Yellow accent |
+
+### Avatar Colors
+
+| Token | Color | Hex Value |
+|-------|-------|-----------|
+| `avatar1` | <span style={{display:'inline-block',width:16,height:16,background:'#F79A75',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F79A75` |
+| `avatar2` | <span style={{display:'inline-block',width:16,height:16,background:'#4B639D',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#4B639D` |
+| `avatar3` | <span style={{display:'inline-block',width:16,height:16,background:'#70ADC6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#70ADC6` |
+| `avatar4` | <span style={{display:'inline-block',width:16,height:16,background:'#5A9289',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#5A9289` |
+| `avatar5` | <span style={{display:'inline-block',width:16,height:16,background:'#B96A8D',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#B96A8D` |
+| `avatar6` | <span style={{display:'inline-block',width:16,height:16,background:'#70749A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#70749A` |
+| `avatar7` | <span style={{display:'inline-block',width:16,height:16,background:'#A38DC6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#A38DC6` |
+| `avatar8` | <span style={{display:'inline-block',width:16,height:16,background:'#8FB37E',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#8FB37E` |
+
+## Usage Examples
+
+### Success State
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: Color(colors.swatchGreen700),
+    borderRadius: BorderRadius.circular(4),
+  ),
+  child: Text('Success', style: TextStyle(color: Colors.white)),
+)
+```
+
+### Warning/Error State
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    color: Color(colors.swatchOrange700),
+    borderRadius: BorderRadius.circular(4),
+  ),
+  child: Text('Warning', style: TextStyle(color: Colors.white)),
+)
+```
+
+### Avatar Background
+
+```dart
+// Get avatar color based on user's color index
+final avatarColor = Color(colors.avatarColorAt(userColorIndex));
+
+CircleAvatar(
+  backgroundColor: avatarColor,
+  child: Text(initials),
+)
+```
+
+### Availability Indicator
+
+```dart
+Container(
+  width: 8,
+  height: 8,
+  decoration: BoxDecoration(
+    color: Color(colors.availabilityYellow),
+    shape: BoxShape.circle,
+  ),
+)
+```
+
+## Button Tints
+
+Semantic colors are used in button tints:
+
+```dart
+// Primary action
+PrimaryButton(
+  text: 'Submit',
+  tint: PrimaryButtonTint.primary,
+  onPressed: () => submit(),
+)
+
+// Destructive action (orange)
+PrimaryButton(
+  text: 'Delete',
+  tint: PrimaryButtonTint.warning,
+  onPressed: () => delete(),
+)
+
+// Success confirmation
+PrimaryButton(
+  text: 'Confirm',
+  tint: PrimaryButtonTint.success,
+  onPressed: () => confirm(),
+)
+```
+
+## MenuButton Variants
+
+```dart
+// Destructive menu action
+MenuButton.invalid(
+  text: 'Delete',
+  iconName: SvgIconName.trash,
+  onPressed: () => delete(),
+)
+```
+
+## Avatar Color Selection
+
+Avatar colors are assigned based on a user's color index:
+
+```dart
+class AvatarSubject {
+  final int colorIndex;  // 0-7, maps to avatar1-avatar8
+  final String initials;
+}
+```
+
+## Semantic Color Guidelines
+
+| Semantic | Color | Use Case |
+|----------|-------|----------|
+| Success | Green | Confirmations, completed states |
+| Warning | Orange | Destructive actions, alerts |
+| Info | Tint Primary | Information, highlights |
+| Neutral | Grey | Disabled, unavailable |
+
+## Related Tokens
+
+- **[Tint Colors](/tokens/colors/tint)** - Brand accent colors
+- **[Text Colors](/tokens/colors/text)** - Text color tokens
+- **[Background Colors](/tokens/colors/background)** - Surface colors
+

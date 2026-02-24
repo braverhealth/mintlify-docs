@@ -1,0 +1,142 @@
+---
+title: Folder Avatar
+description: A folder-themed avatar widget with initials
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A folder-themed avatar widget displaying a folder icon with initials. Suitable for representing folders, workspaces, patients, or collection-based entities.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Folder Icon">
+    Displays a folder icon as the primary visual
+  </Card>
+  <Card title="Size Variants">
+    Supports small, normal, and mega sizes
+  </Card>
+  <Card title="Invalid State">
+    Can display warning state with orange coloring
+  </Card>
+  <Card title="Shadow Support">
+    Optional shadow effect for depth
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Folder Avatar
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+)
+```
+
+### Small Folder Avatar
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+  small: true,
+)
+```
+
+### Mega Folder Avatar
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+  mega: true,
+)
+```
+
+### Invalid/Warning State
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+  invalid: true,
+)
+```
+
+### With Shadow
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+  shadow: true,
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/avatar/folderavatar/with-shadow&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Custom Size
+
+```dart
+FolderAvatar(
+  subject: folderSubject,
+  fixedSize: 60.0,
+)
+```
+
+## Size Variants
+
+| Variant | Size | Use Case |
+|---------|------|----------|
+| `small: true` | 24px | Compact lists, inline display |
+| Default | 48px | Standard display |
+| `mega: true` | 120px | Profile headers, featured display |
+| `fixedSize` | Custom | Specific sizing needs |
+
+## Parameters
+
+<ResponseField name="subject" type="AvatarSubject" required>
+  The subject (folder, workspace, etc.) whose information is displayed.
+</ResponseField>
+
+<ResponseField name="shadow" type="bool">
+  Display a shadow effect beneath the folder. Default: `false`.
+</ResponseField>
+
+<ResponseField name="small" type="bool">
+  Use small size variant (24px). Default: `false`.
+</ResponseField>
+
+<ResponseField name="mega" type="bool">
+  Use mega/large size variant (120px). Default: `false`.
+</ResponseField>
+
+<ResponseField name="invalid" type="bool">
+  Display in invalid/warning state. Default: `false`.
+</ResponseField>
+
+<ResponseField name="fixedSize" type="double?">
+  Optional fixed size in logical pixels.
+</ResponseField>
+
+## Use Cases
+
+- **Patient Folders** - Representing patient records with initials
+- **Workspaces** - Team or project workspaces
+- **Collections** - Document or file collections
+- **Categories** - Content categories or groups
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/avatar/folderavatar/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[Avatar](/components/avatars/avatar)** - User avatar
+- **[AvatarText](/components/avatars/avatar-text)** - Text for avatars
+- **[ListItem](/components/lists/list-item)** - Often used with folder avatars
+

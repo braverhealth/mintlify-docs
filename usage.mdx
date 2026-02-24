@@ -1,0 +1,140 @@
+---
+title: Usage
+description: How to use Braver Flutter UI components and design tokens
+---
+
+# Usage
+
+This guide covers the fundamental patterns for using Braver Flutter UI in your application.
+
+## Accessing Colors
+
+Colors are accessed through the `BraverColors` class, typically via the context extension:
+
+```dart
+Widget build(BuildContext context) {
+  final colors = context.getColors();
+  
+  return Container(
+    color: colors.backgroundPrimary,
+    child: Text(
+      'Hello',
+      style: TextStyle(color: colors.text),
+    ),
+  );
+}
+```
+
+### Dark Mode Support
+
+Colors automatically adapt to the current brightness. You can also force a specific mode:
+
+```dart
+// Force dark mode colors
+final darkColors = BraverColors.of(context, dark: true);
+
+// Force light mode colors
+final lightColors = BraverColors.of(context, light: true);
+
+// Invert current mode
+final invertedColors = BraverColors.of(context, invert: true);
+```
+
+## Using Components
+
+All components follow consistent patterns:
+
+### Buttons
+
+```dart
+// Primary action
+PrimaryButton(
+  text: 'Submit',
+  onPressed: () => handleSubmit(),
+)
+
+// Secondary action
+SecondaryButton(
+  text: 'Cancel',
+  onPressed: () => goBack(),
+)
+
+// Icon button
+MenuButton.icon(
+  iconName: SvgIconName.settings,
+  semanticLabel: S.of(context).settingsButton,
+  onTap: () => openSettings(),
+)
+```
+
+### Form Inputs
+
+```dart
+TextInput(
+  controller: controller,
+  label: 'Email',
+  placeholder: 'Enter your email',
+  validator: (value) => validateEmail(value),
+)
+```
+
+### Lists
+
+```dart
+TappableListItem.builder(
+  builder: (context, isTapped) => ListItem(
+    title: 'Settings',
+    leading: Avatar(user: currentUser),
+    trailing: SvgIcon(SvgIconName.chevronRight, SvgIconSize.small),
+  ),
+  onTap: () => navigateToSettings(),
+)
+```
+
+## BuildContext Safety
+
+<Warning>
+Never use `BuildContext` to resolve services inside callbacks. Extract services before the callback.
+</Warning>
+
+```dart
+// ❌ BAD - context may be invalid
+onTap: () {
+  context.getService<Navigator>().goBack();
+}
+
+// ✅ GOOD - extract before callback
+Widget build(BuildContext context) {
+  final navigator = context.getService<Navigator>();
+  
+  return Button(
+    onTap: () => navigator.goBack(),
+  );
+}
+```
+
+## Accessibility
+
+All interactive widgets should provide semantic labels:
+
+```dart
+MenuButton.icon(
+  key: SettingsPageKeys.closeButton,
+  iconName: SvgIconName.close,
+  semanticLabel: S.of(context).closeDialogButton,  // Localized!
+  onTap: () => close(),
+)
+```
+
+## Widget Keys
+
+Use key classes for test automation:
+
+```dart
+// ❌ BAD - hardcoded string
+key: const ValueKey('submit-button')
+
+// ✅ GOOD - key class reference
+key: FormPageKeys.submitButton
+```
+

@@ -1,0 +1,174 @@
+---
+title: Primary Button
+description: A prominent, filled button for primary actions
+---
+
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+PrimaryButton is the main call-to-action button used for primary actions like "Submit", "Send", "Continue". It features a filled background with high visual prominence.
+
+## Variants
+
+- **Text only** - Display text label
+- **Icon only** - Display icon (requires `iconName`, no `text`)
+- **Icon + Text** - Display both icon and text
+- **Vertical layout** - Stack icon above text (set `isVertical` to true)
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Multiple tints">
+    `tint`, `secondaryTint`, `orange`, `green` color schemes
+  </Card>
+  <Card title="Loading state">
+    Shows loading indicator when `isLoading` is true
+  </Card>
+  <Card title="Large icon support">
+    `largeIcon` parameter for prominent icon display
+  </Card>
+  <Card title="Grouped mode">
+    Removes border radius when `grouped` is true
+  </Card>
+</CardGroup>
+
+## Tint Options
+
+| Tint | Usage |
+|------|-------|
+| `tint` | Default primary action |
+| `secondaryTint` | Secondary emphasis |
+| `orange` | Destructive or warning actions |
+| `green` | Success or positive actions |
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/primarybutton/default&preview`}
+  width="100%"
+  height="400"
+/>
+
+## Examples
+
+### Basic Text Button
+
+```dart
+PrimaryButton(
+  text: 'Send',
+  onPressed: () => sendMessage(),
+)
+```
+
+### Icon + Text Button
+
+```dart
+PrimaryButton(
+  text: 'Upload',
+  iconName: SvgIconName.upload,
+  onPressed: () => uploadFile(),
+)
+```
+
+### Icon Only Button
+
+```dart
+PrimaryButton.icon(
+  iconName: SvgIconName.send,
+  semanticLabel: S.of(context).sendMessageButton,
+  onPressed: () => sendMessage(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/primarybutton/icon-only&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Loading State
+
+```dart
+PrimaryButton(
+  text: 'Submitting...',
+  isLoading: true,
+  onPressed: null,
+)
+```
+
+### Destructive Action (Orange Tint)
+
+```dart
+PrimaryButton(
+  text: 'Delete',
+  tint: PrimaryButtonTint.orange,
+  iconName: SvgIconName.trash,
+  onPressed: () => deleteItem(),
+)
+```
+
+### Grouped Buttons
+
+```dart
+ButtonGroup(
+  children: [
+    PrimaryButton(
+      text: 'Option A',
+      grouped: true,
+      onPressed: () => selectA(),
+    ),
+    PrimaryButton(
+      text: 'Option B',
+      grouped: true,
+      onPressed: () => selectB(),
+    ),
+  ],
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/primarybutton/grouped-(button-group)&preview`}
+  width="100%"
+  height="300"
+/>
+
+## Parameters
+
+<ResponseField name="text" type="String?">
+  The button's text label. Required unless using icon-only mode.
+</ResponseField>
+
+<ResponseField name="onPressed" type="VoidCallback?">
+  Callback when the button is pressed. Set to `null` to disable the button.
+</ResponseField>
+
+<ResponseField name="iconName" type="SvgIconName?">
+  Optional icon to display alongside or instead of text.
+</ResponseField>
+
+<ResponseField name="tint" type="PrimaryButtonTint">
+  Color scheme for the button. Defaults to `PrimaryButtonTint.tint`.
+</ResponseField>
+
+<ResponseField name="isLoading" type="bool">
+  When true, shows a loading indicator instead of content.
+</ResponseField>
+
+<ResponseField name="grouped" type="bool">
+  When true, removes border radius for use in ButtonGroup.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Accessibility label for screen readers. Required for icon-only buttons.
+</ResponseField>
+
+<ResponseField name="key" type="Key?">
+  Widget key for testing. Use key classes like `MyPageKeys.submitButton`.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/primarybutton/default&preview`}
+  width="100%"
+  height="500"
+  style={{ border: "1px solid #e5e7eb", borderRadius: "8px" }}
+/>
+

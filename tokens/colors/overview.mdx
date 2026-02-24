@@ -1,0 +1,137 @@
+---
+title: Colors Overview
+description: Color tokens for the Braver design system
+---
+
+Colors are organized into semantic categories. Most colors are **adaptive**, automatically adjusting for light and dark modes.
+
+## Accessing Colors
+
+```dart
+// Access via context extension
+final colors = context.getColors();
+
+// Use semantic color getters
+Container(
+  color: colors.backgroundPrimary,
+  child: Text(
+    'Hello',
+    style: TextStyle(color: colors.text),
+  ),
+)
+```
+
+### Forcing Brightness
+
+```dart
+// Force dark mode colors
+final darkColors = context.getColors(dark: true);
+
+// Force light mode colors
+final lightColors = context.getColors(light: true);
+
+// Invert current mode
+final invertedColors = context.getColors(invert: true);
+```
+
+## Color Categories
+
+<CardGroup cols={2}>
+  <Card title="Background" icon="square" href="/tokens/colors/background">
+    Surface and container colors
+  </Card>
+  <Card title="Text" icon="font" href="/tokens/colors/text">
+    Text and label colors
+  </Card>
+  <Card title="Tint" icon="palette" href="/tokens/colors/tint">
+    Brand and accent tints
+  </Card>
+  <Card title="Border" icon="border-all" href="/tokens/colors/border">
+    Border and separator colors
+  </Card>
+  <Card title="Accent" icon="star" href="/tokens/colors/accent">
+    Status and notification colors
+  </Card>
+</CardGroup>
+
+## All Color Tokens
+
+### Background Colors
+
+| Token | Description | Adaptive |
+|-------|-------------|----------|
+| `backgroundPrimary` | Main background | ✅ |
+| `backgroundSecondary` | Secondary surfaces | ✅ |
+| `backgroundTertiary` | Tertiary surfaces | ✅ |
+| `backgroundQuaternary` | Deepest level | ✅ |
+| `backgroundInvalid` | Error state backgrounds | ✅ |
+| `backgroundHighlight` | Selection highlight | ✅ |
+| `backgroundEmpty` | Empty state backgrounds | ✅ |
+
+### Text Colors
+
+| Token | Description | Adaptive |
+|-------|-------------|----------|
+| `text` | Primary text | ✅ |
+| `textPale` | Secondary text | ✅ |
+| `textXPale` | Tertiary/hint text | ✅ |
+| `textXXPale` | Disabled text | ✅ |
+| `textInvalid` | Error text | ✅ |
+| `heading` | Heading text | ✅ |
+| `label` | Form labels | ✅ |
+
+### Tint Colors
+
+| Token | Description | Adaptive |
+|-------|-------------|----------|
+| `tintPrimary` | Primary brand color | ✅ |
+| `tintSecondary` | Secondary brand color | ✅ |
+| `tintTertiary` | Tertiary brand color | ✅ |
+| `tintTextPrimary` | Tinted text primary | ✅ |
+| `tintTextSecondary` | Tinted text secondary | ✅ |
+
+### Border Colors
+
+| Token | Description | Adaptive |
+|-------|-------------|----------|
+| `border` | Default border | ✅ |
+| `borderPale` | Subtle border | ✅ |
+| `borderHeavy` | Emphasized border | ✅ |
+| `separatorNavBar` | Navigation bar separator | ✅ |
+| `separatorWideLayout` | Wide layout separator | ✅ |
+
+### Accent Colors
+
+| Token | Description | Adaptive |
+|-------|-------------|----------|
+| `accentOrange` | Warning/destructive | ✅ |
+| `accentGreen` | Success/positive | ✅ |
+| `accentYellow` | Caution/attention | ✅ |
+| `notificationOrange` | Notification badge | ✅ |
+
+### Static Colors (Non-Adaptive)
+
+| Token | Color | Hex Value | Usage |
+|-------|-------|-----------|-------|
+| `swatchWhite` | <span style={{display:'inline-block',width:16,height:16,background:'#FFFFFF',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#FFFFFF` | Pure white |
+| `swatchBlack` | <span style={{display:'inline-block',width:16,height:16,background:'#000000',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#000000` | Pure black |
+| `swatchOrange900` | <span style={{display:'inline-block',width:16,height:16,background:'#F15A31',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F15A31` | Orange primary |
+| `swatchOrange700` | <span style={{display:'inline-block',width:16,height:16,background:'#F47C52',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F47C52` | Orange secondary |
+| `swatchGreen900` | <span style={{display:'inline-block',width:16,height:16,background:'#26645A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#26645A` | Green primary |
+| `swatchGreen700` | <span style={{display:'inline-block',width:16,height:16,background:'#51837B',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#51837B` | Green secondary |
+| `availabilityYellow` | <span style={{display:'inline-block',width:16,height:16,background:'#DEB833',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#DEB833` | Availability indicator |
+| `swatchDarkGrey` | <span style={{display:'inline-block',width:16,height:16,background:'#A9A9A9',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#A9A9A9` | Neutral grey |
+
+### Avatar Palette
+
+| Token | Color | Hex Value |
+|-------|-------|-----------|
+| `avatar1` | <span style={{display:'inline-block',width:16,height:16,background:'#F79A75',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#F79A75` |
+| `avatar2` | <span style={{display:'inline-block',width:16,height:16,background:'#4B639D',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#4B639D` |
+| `avatar3` | <span style={{display:'inline-block',width:16,height:16,background:'#70ADC6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#70ADC6` |
+| `avatar4` | <span style={{display:'inline-block',width:16,height:16,background:'#5A9289',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#5A9289` |
+| `avatar5` | <span style={{display:'inline-block',width:16,height:16,background:'#B96A8D',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#B96A8D` |
+| `avatar6` | <span style={{display:'inline-block',width:16,height:16,background:'#70749A',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#70749A` |
+| `avatar7` | <span style={{display:'inline-block',width:16,height:16,background:'#A38DC6',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#A38DC6` |
+| `avatar8` | <span style={{display:'inline-block',width:16,height:16,background:'#8FB37E',border:'1px solid #ccc',borderRadius:2,verticalAlign:'middle',marginRight:4}}></span> | `#8FB37E` |
+

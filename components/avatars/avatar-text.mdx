@@ -1,0 +1,136 @@
+---
+title: Avatar Text
+description: Text widget for displaying initials within avatar components
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A specialized text widget that renders initials or short text inside avatar backgrounds. Applies avatar-specific typography and styling, including dark mode text colors suitable for colored backgrounds.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Avatar Typography">
+    Uses avatar-specific text styles and sizing
+  </Card>
+  <Card title="Dark Mode Colors">
+    Always uses white text for colored backgrounds
+  </Card>
+  <Card title="Size Variants">
+    Supports xsmall, small, medium, and large sizes
+  </Card>
+  <Card title="Mega Support">
+    Optional mega/large text styling
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Avatar Text
+
+```dart
+AvatarText(
+  'JD',
+  size: TextSize.large,
+)
+```
+
+### Mega Avatar Text
+
+```dart
+AvatarText(
+  'JD',
+  size: TextSize.large,
+  mega: true,
+)
+```
+
+### With Custom Text Style
+
+```dart
+AvatarText(
+  'JD',
+  size: TextSize.medium,
+  textStyleOverride: (style) => style.copyWith(
+    fontWeight: FontWeight.bold,
+  ),
+)
+```
+
+### Small Avatar Text
+
+```dart
+AvatarText(
+  'AB',
+  size: TextSize.small,
+)
+```
+
+## Size Variants
+
+| TextSize | Use Case |
+|----------|----------|
+| `TextSize.xsmall` | Tiny avatars (< 24px) |
+| `TextSize.small` | Small avatars (24-32px) |
+| `TextSize.medium` | Standard avatars (32-48px) |
+| `TextSize.large` | Large avatars (48-64px) |
+
+## Parameters
+
+<ResponseField name="text" type="String" required>
+  The text to display (typically initials).
+</ResponseField>
+
+<ResponseField name="size" type="TextSize" required>
+  The size variant for the avatar text.
+</ResponseField>
+
+<ResponseField name="mega" type="bool">
+  Use mega/large text styling. Default: `false`.
+</ResponseField>
+
+<ResponseField name="textStyleOverride" type="TextStyleTransformer?">
+  Optional function to transform the computed text style.
+</ResponseField>
+
+<ResponseField name="textAlign" type="TextAlign?">
+  Text alignment.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String?">
+  Semantic label for accessibility.
+</ResponseField>
+
+## Usage with Avatar
+
+AvatarText is typically used internally by Avatar and FolderAvatar components. Direct usage is rare but useful for custom avatar implementations:
+
+```dart
+Container(
+  width: 48,
+  height: 48,
+  decoration: BoxDecoration(
+    color: avatarColor,
+    shape: BoxShape.circle,
+  ),
+  child: Center(
+    child: AvatarText(
+      'JD',
+      size: TextSize.large,
+    ),
+  ),
+)
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/avatar/avatar/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[Avatar](/components/avatars/avatar)** - Main avatar component
+- **[FolderAvatar](/components/avatars/folder-avatar)** - Folder-themed avatar
+

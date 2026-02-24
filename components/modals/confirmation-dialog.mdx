@@ -1,0 +1,166 @@
+---
+title: Confirmation Dialog
+description: A confirmation dialog with title, subtitle, and action buttons
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A confirmation dialog with title, optional subtitle, and action buttons. Used to ask the user for confirmation before performing an action.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Dual Actions">
+    Confirm and decline buttons with callbacks
+  </Card>
+  <Card title="Customizable">
+    Custom button text and tint colors
+  </Card>
+  <Card title="Quotation Support">
+    Optional quotation marks around subtitle
+  </Card>
+  <Card title="Auto-dismiss">
+    Configurable automatic modal dismissal
+  </Card>
+</CardGroup>
+
+## Constructors
+
+| Constructor | Description |
+|-------------|-------------|
+| `ConsentDialog()` | Standard constructor with title and subtitle |
+| `ConsentDialog.withTitleOnly()` | Convenience for title-only dialogs |
+
+## Examples
+
+### Standard Confirmation
+
+```dart
+ConsentDialog(
+  titleText: 'Delete item?',
+  subText: 'This action cannot be undone.',
+  onConfirm: () => deleteItem(),
+  onDecline: () => print('Cancelled'),
+).show(context);
+```
+
+### Title Only
+
+```dart
+ConsentDialog.withTitleOnly(
+  titleText: 'Are you sure?',
+  onConfirm: () => performAction(),
+).show(context);
+```
+
+### Confirm-Only Mode
+
+```dart
+ConsentDialog(
+  titleText: 'Success',
+  subText: 'Operation completed.',
+  onConfirm: () {},
+  confirmOnly: true,
+).show(context);
+```
+
+### Destructive Action (Orange Tint)
+
+```dart
+ConsentDialog(
+  titleText: 'Remove account?',
+  subText: 'You will lose access to all your data.',
+  confirmText: 'Remove',
+  confirmButtonTint: PrimaryButtonTint.orange,
+  onConfirm: () => removeAccount(),
+  onDecline: () {},
+).show(context);
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/consentdialog/destructive-action&preview`}
+  width="100%"
+  height="300"
+/>
+
+### With Quotation Marks
+
+```dart
+ConsentDialog(
+  titleText: 'Reply to message?',
+  subText: 'Meeting scheduled for tomorrow',
+  showQuotationMark: true,
+  onConfirm: () => sendReply(),
+).show(context);
+```
+
+## Parameters
+
+<ResponseField name="titleText" type="String" required>
+  Main title text displayed at the top.
+</ResponseField>
+
+<ResponseField name="subText" type="String" required>
+  Subtitle/description text (required in standard constructor).
+</ResponseField>
+
+<ResponseField name="onConfirm" type="VoidCallback" required>
+  Callback when user confirms the action.
+</ResponseField>
+
+<ResponseField name="onDecline" type="VoidCallback?">
+  Callback when user declines. Optional.
+</ResponseField>
+
+<ResponseField name="confirmText" type="String">
+  Custom confirm button text. Defaults to "OK".
+</ResponseField>
+
+<ResponseField name="declineText" type="String">
+  Custom decline button text. Defaults to "Cancel".
+</ResponseField>
+
+<ResponseField name="confirmButtonTint" type="PrimaryButtonTint">
+  Button color tint. Use `orange` for destructive actions.
+</ResponseField>
+
+<ResponseField name="autoHideModal" type="bool">
+  Auto-dismiss after button press. Default: `true`.
+</ResponseField>
+
+<ResponseField name="confirmOnly" type="bool">
+  Show only confirm button (hide decline). Default: `false`.
+</ResponseField>
+
+<ResponseField name="showQuotationMark" type="bool">
+  Wrap subtitle in quotation marks. Default: `false`.
+</ResponseField>
+
+## Showing the Dialog
+
+All dialogs use the `DialogMixin` which provides the `.show(context)` method:
+
+```dart
+// Simple show
+MyDialog().show(context);
+
+// With options
+MyDialog().show(
+  context,
+  hidingMenu: true,  // Also hide any open menu
+  onClose: () => handleClose(),
+);
+```
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/consentdialog/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[InfoDialog](/components/modals/info-dialog)** - Information display only
+- **[ModalSurface](/components/modals/modal-surface)** - Modal system container
+

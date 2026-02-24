@@ -1,0 +1,124 @@
+---
+title: Info Dialog
+description: A simple informational dialog with title, subtitle, and close button
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+A simple informational dialog with a title, optional subtitle, and close button. Used to display informational messages to the user.
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Simple Layout">
+    Title and optional subtitle text
+  </Card>
+  <Card title="Customizable Button">
+    Custom button text and tint
+  </Card>
+  <Card title="Auto Dismiss">
+    Automatic dialog dismissal on button press
+  </Card>
+  <Card title="Consistent Styling">
+    Matches other dialog styles
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic Info Dialog
+
+```dart
+InfoDialog(
+  titleText: 'Success',
+  subText: 'Your changes have been saved.',
+  closeButtonText: 'OK',
+).show(context);
+```
+
+### Warning Dialog
+
+```dart
+InfoDialog(
+  titleText: 'Warning',
+  subText: 'This action cannot be undone.',
+  confirmButtonTint: PrimaryButtonTint.warning,
+).show(context);
+```
+
+### Title Only
+
+```dart
+InfoDialog(
+  titleText: 'Operation Complete',
+).show(context);
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/infodialog/title-only&preview`}
+  width="100%"
+  height="300"
+/>
+
+### Custom Button Text
+
+```dart
+InfoDialog(
+  titleText: 'File Description',
+  subText: document.description,
+  closeButtonText: S.of(context).genericClose,
+).show(context);
+```
+
+## Use Cases
+
+- Success confirmations
+- Information messages
+- Warning notifications
+- File/item descriptions
+- Status updates
+
+## Parameters
+
+<ResponseField name="titleText" type="String" required>
+  The main title text displayed in the dialog.
+</ResponseField>
+
+<ResponseField name="subText" type="String?">
+  Optional subtitle or description text.
+</ResponseField>
+
+<ResponseField name="closeButtonText" type="String?">
+  Custom text for the close button. Defaults to localized "Close".
+</ResponseField>
+
+<ResponseField name="confirmButtonTint" type="PrimaryButtonTint">
+  The tint color for the button. Default: `PrimaryButtonTint.primary`.
+</ResponseField>
+
+## Showing the Dialog
+
+Use the `show` method from `DialogMixin`:
+
+```dart
+InfoDialog(
+  titleText: 'Title',
+  subText: 'Description',
+).show(context);
+```
+
+The dialog is shown through the modal system and automatically handles dismissal.
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/modal/dialog/infodialog/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[ConsentDialog](/components/modals/consent-dialog)** - Confirmation dialog
+- **[ConfirmationDialog](/components/modals/confirmation-dialog)** - Confirm/cancel dialog
+- **[ModalSurface](/components/modals/modal-surface)** - Modal system
+

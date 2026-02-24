@@ -1,0 +1,154 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Braver Flutter UI",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#3E4982",
+    "light": "#9882CA",
+    "dark": "#3E4982",
+    "anchors": {
+      "from": "#3E4982",
+      "to": "#9882CA"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Widgetbook",
+      "url": "https://widgetbook.braver.health"
+    }
+  ],
+  "tabs": [
+    {
+      "name": "Components",
+      "url": "components"
+    },
+    {
+      "name": "Design Tokens",
+      "url": "tokens"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "introduction",
+        "installation",
+        "usage"
+      ]
+    },
+    {
+      "group": "Buttons",
+      "pages": [
+        "components/buttons/primary-button",
+        "components/buttons/secondary-button",
+        "components/buttons/link-button",
+        "components/buttons/menu-button",
+        "components/buttons/nav-button",
+        "components/buttons/outline-button",
+        "components/buttons/toggle-button",
+        "components/buttons/span-button",
+        "components/buttons/hud-button",
+        "components/buttons/selectable-tile-button",
+        "components/buttons/selectable-choice-card",
+        "components/buttons/button-group"
+      ]
+    },
+    {
+      "group": "Forms",
+      "pages": [
+        "components/forms/text-input",
+        "components/forms/datepicker",
+        "components/forms/time-picker",
+        "components/forms/dropdown",
+        "components/forms/checkbox"
+      ]
+    },
+    {
+      "group": "Lists",
+      "pages": [
+        "components/lists/list-item",
+        "components/lists/tappable-list-item",
+        "components/lists/empty-list"
+      ]
+    },
+    {
+      "group": "Avatars",
+      "pages": [
+        "components/avatars/avatar",
+        "components/avatars/folder-avatar",
+        "components/avatars/avatar-text"
+      ]
+    },
+    {
+      "group": "Modals",
+      "pages": [
+        "components/modals/modal-surface",
+        "components/modals/confirmation-dialog",
+        "components/modals/info-dialog",
+        "components/modals/consent-dialog"
+      ]
+    },
+    {
+      "group": "Indicators",
+      "pages": [
+        "components/indicators/notification-pin",
+        "components/indicators/badge-with-notification-icon",
+        "components/indicators/count-badge",
+        "components/indicators/loading-indicator"
+      ]
+    },
+    {
+      "group": "Layout",
+      "pages": [
+        "components/layout/tabs",
+        "components/layout/modal-menu",
+        "components/layout/rounded-container"
+      ]
+    },
+    {
+      "group": "Colors",
+      "pages": [
+        "tokens/colors/overview",
+        "tokens/colors/background",
+        "tokens/colors/text",
+        "tokens/colors/tint",
+        "tokens/colors/border",
+        "tokens/colors/accent"
+      ]
+    },
+    {
+      "group": "Typography",
+      "pages": [
+        "tokens/typography/overview",
+        "tokens/typography/text-styles"
+      ]
+    },
+    {
+      "group": "Spacing",
+      "pages": [
+        "tokens/spacing/overview"
+      ]
+    },
+    {
+      "group": "Borders & Shadows",
+      "pages": [
+        "tokens/borders/overview",
+        "tokens/shadows/overview"
+      ]
+    },
+    {
+      "group": "Animation",
+      "pages": [
+        "tokens/animation/overview"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/braverhealth"
+  }
+}
+

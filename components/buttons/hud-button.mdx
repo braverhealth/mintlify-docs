@@ -1,0 +1,128 @@
+---
+title: HUD Button
+description: A transparent HUD-style button for toolbar/header actions
+---
+import { WIDGETBOOK_URL } from '/snippets/config.mdx';
+
+## Variants
+
+| Variant | Description |
+|---------|-------------|
+| `HudButton` | Icon with optional child widget |
+| `HudButton.icon` | Icon-only button |
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Transparent Background">
+    Default styling for overlay contexts
+  </Card>
+  <Card title="Semi-transparent Feedback">
+    Touch feedback on interaction
+  </Card>
+  <Card title="Customizable Dimensions">
+    Optional fixed height and width
+  </Card>
+  <Card title="Accessibility">
+    Requires semantic label
+  </Card>
+</CardGroup>
+
+## Examples
+
+### Basic HUD Button with Icon
+
+```dart
+HudButton.icon(
+  icon: SvgIcon(SvgIconName.close, SvgIconSize.medium),
+  semanticLabel: S.of(context).closeButton,
+  onTap: () => closeDialog(),
+)
+```
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/hudbutton/icon-only&preview`}
+  width="100%"
+  height="300"
+/>
+
+### HUD Button with Custom Child
+
+```dart
+HudButton(
+  semanticLabel: S.of(context).toggleMenuButton,
+  onTap: () => toggleMenu(),
+  child: CustomWidget(),
+)
+```
+
+### With Fixed Dimensions
+
+```dart
+HudButton.icon(
+  icon: SvgIcon(SvgIconName.play, SvgIconSize.large),
+  semanticLabel: S.of(context).playButton,
+  height: 60,
+  width: 60,
+  onTap: () => play(),
+)
+```
+
+### Inactive State
+
+```dart
+HudButton.icon(
+  icon: SvgIcon(SvgIconName.settings, SvgIconSize.medium),
+  semanticLabel: S.of(context).settingsButton,
+  active: false,  // Does not react to touch
+  onTap: () => openSettings(),
+)
+```
+
+## Parameters
+
+<ResponseField name="child" type="Widget" required>
+  Widget to display inside button.
+</ResponseField>
+
+<ResponseField name="onTap" type="VoidCallback?">
+  Callback when button is tapped.
+</ResponseField>
+
+<ResponseField name="semanticLabel" type="String" required>
+  Accessibility label for screen readers.
+</ResponseField>
+
+<ResponseField name="active" type="bool">
+  Whether button reacts to touch. Default: `true`.
+</ResponseField>
+
+<ResponseField name="height" type="double?">
+  Optional fixed height.
+</ResponseField>
+
+<ResponseField name="width" type="double?">
+  Optional fixed width.
+</ResponseField>
+
+<ResponseField name="borderRadius" type="double">
+  Border radius for background. Default: `8.0`.
+</ResponseField>
+
+<ResponseField name="padding" type="EdgeInsets">
+  Padding around child. Default: `EdgeInsets.zero`.
+</ResponseField>
+
+## Live Preview
+
+<iframe
+  src={`${WIDGETBOOK_URL}/#/?path=components/button/hudbutton/default&preview`}
+  width="100%"
+  height="500"
+/>
+
+## Related Components
+
+- **[NavButton](/components/buttons/nav-button)** - Solid background navigation
+- **[OutlineButton](/components/buttons/outline-button)** - Outline button
+
